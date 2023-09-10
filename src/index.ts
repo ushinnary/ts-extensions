@@ -1,3 +1,9 @@
-export * from "./array/array.rust";
-export * from "./array/array.linq";
-export * from "./number/number.rust";
+export async function initArrayRustExtension() {
+	return import("./array/array.rust");
+}
+export async function initArrayLinqExtension() {
+	return import("./array/array.linq");
+}
+export async function initNumberRustExtension() {
+	return import("./number/number.rust");
+}

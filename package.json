@@ -1,12 +1,13 @@
 {
-  "name": "rtypescript",
+  "name": "ts-extended-types",
   "version": "0.0.1",
   "description": "Add rust methods to TS base classes",
   "main": "index.ts",
   "scripts": {
     "test": "jest",
     "format": "biome format --write ./src",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build": "tsc"
   },
   "keywords": [
     "typescript"

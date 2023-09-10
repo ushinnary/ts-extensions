@@ -1,9 +1,13 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "target": "es2015",
+        "target": "ES2022",
         "declaration": true,
         "outDir": "./dist",
+        "lib": [
+            "ES2022"
+        ],
+        "baseUrl": "."
     },
     "include": [
         "src/**/*"
