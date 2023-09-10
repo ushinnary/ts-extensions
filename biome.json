@@ -1,0 +1,19 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "formatter": {
+    "lineWidth": 80,
+    "indentStyle": "tab",
+    "formatWithErrors": false
+  },
+  "linter": {
+    "rules": {
+      "all": true
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "trailingComma": "all",
+      "semicolons": "always"
+    }
+  }
+}
