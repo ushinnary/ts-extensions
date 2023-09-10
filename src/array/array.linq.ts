@@ -18,6 +18,8 @@ declare global {
 		aggregate<U = T>(accumulator: (acc: U, item: T) => U): U;
 		append(...items: T[]): T[];
 		average(this: number[]): number;
+		min(this: number[]): number;
+		max(this: number[]): number;
 		chunk(size: number): T[][];
 		distinct(this: (number | string)[]): T[];
 		distinctBy(this: object[], key: keyof T): T[];
@@ -184,6 +186,32 @@ if (!Array.prototype.groupBy) {
 			return Object.values(obj).map(({ key, values }: RecordValue) =>
 				finalMap(key, values),
 			);
+		},
+	});
+}
+if (!Array.prototype.min) {
+	Object.defineProperty(Array.prototype, "min", {
+		enumerable: false,
+		writable: false,
+		configurable: false,
+		value: function () {
+			if (this.length === 0) {
+				return 0;
+			}
+			return Math.min(...this);
+		},
+	});
+}
+if (!Array.prototype.max) {
+	Object.defineProperty(Array.prototype, "max", {
+		enumerable: false,
+		writable: false,
+		configurable: false,
+		value: function () {
+			if (this.length === 0) {
+				return 0;
+			}
+			return Math.max(...this);
 		},
 	});
 }

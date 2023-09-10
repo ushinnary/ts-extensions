@@ -160,4 +160,22 @@ describe("Array linq", () => {
 			]);
 		});
 	});
+
+	describe("#min()", () => {
+		it("should return the minimum value", () => {
+			expect([1, 2, 3].min()).toEqual(1);
+			expect([].min()).toEqual(0);
+			// Should show error in editor
+			// expect([""].min()).toEqual(0);
+		});
+	});
+
+	describe("#max()", () => {
+		it("should return the maximum value", () => {
+			expect([1, 2, 3].max()).toEqual(3);
+			expect([].max()).toEqual(0);
+			// Should show error in editor
+			// expect([""].max()).toEqual(0);
+		});
+	});
 });
