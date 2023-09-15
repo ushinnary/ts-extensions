@@ -31,6 +31,13 @@ declare global {
 			groupRes: (item: T) => R,
 			finalMap: (groupKey: U, groupValues: R[]) => V,
 		): V[];
+		groupJoin<U, R, V>(
+			this: object[],
+			inner: U[],
+			outerKeySelector: (item: T) => R,
+			innerKeySelector: (item: U) => R,
+			resultSelector: (outer: T, inner: U[]) => V,
+		): V[];
 	}
 }
 
@@ -212,6 +219,28 @@ if (!Array.prototype.max) {
 				return 0;
 			}
 			return Math.max(...this);
+		},
+	});
+}
+if (!Array.prototype.groupJoin) {
+	Object.defineProperty(Array.prototype, "groupJoin", {
+		enumerable: false,
+		writable: false,
+		configurable: false,
+		value: function (
+			inner,
+			outerKeySelector,
+			innerKeySelector,
+			resultSelector,
+		) {
+			return this.map((outer) =>
+				resultSelector(
+					outer,
+					inner.filter(
+						(inner) => innerKeySelector(inner) === outerKeySelector(outer),
+					),
+				),
+			);
 		},
 	});
 }

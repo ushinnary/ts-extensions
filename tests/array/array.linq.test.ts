@@ -178,4 +178,47 @@ describe("Array linq", () => {
 			// expect([""].max()).toEqual(0);
 		});
 	});
+
+	describe("#groupJoin()", () => {
+		it("should return the grouped array", () => {
+			type Person = { name: string };
+			type Pet = { name: string; owner: Person };
+			const magnus = { name: "Magnus" };
+			const terry = { name: "Terry" };
+			const charlotte = { name: "Charlotte" };
+
+			const people: Person[] = [magnus, terry, charlotte];
+
+			const barley = { name: "Barley", owner: terry };
+			const boots = { name: "Boots", owner: terry };
+			const whiskers = { name: "Whiskers", owner: charlotte };
+			const daisy = { name: "Daisy", owner: magnus };
+
+			const pets: Pet[] = [barley, boots, whiskers, daisy];
+
+			const result = people.groupJoin(
+				pets,
+				(person) => person,
+				(pet) => pet.owner,
+				(person, petCollection) => ({
+					ownerName: person.name,
+					pets: petCollection.select((pet) => pet.name),
+				}),
+			);
+			expect(result).toMatchObject([
+				{
+					ownerName: "Magnus",
+					pets: ["Daisy"],
+				},
+				{
+					ownerName: "Terry",
+					pets: ["Barley", "Boots"],
+				},
+				{
+					ownerName: "Charlotte",
+					pets: ["Whiskers"],
+				},
+			]);
+		});
+	});
 });
