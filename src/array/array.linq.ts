@@ -38,6 +38,7 @@ declare global {
 			innerKeySelector: (item: U) => R,
 			resultSelector: (outer: T, inner: U[]) => V,
 		): V[];
+		intersect<U extends number | string>(this: U[], items: U[]): U[];
 	}
 }
 
@@ -241,6 +242,16 @@ if (!Array.prototype.groupJoin) {
 					),
 				),
 			);
+		},
+	});
+}
+if (!Array.prototype.intersect) {
+	Object.defineProperty(Array.prototype, "intersect", {
+		enumerable: false,
+		writable: false,
+		configurable: false,
+		value: function (itemsToIntersect) {
+			return this.filter((item) => itemsToIntersect.includes(item));
 		},
 	});
 }

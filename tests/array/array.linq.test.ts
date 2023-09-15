@@ -221,4 +221,14 @@ describe("Array linq", () => {
 			]);
 		});
 	});
+
+	describe("#intersect()", () => {
+		it("should return the intersected array", () => {
+			expect([1, 2, 3, 4].intersect([1, 2])).toEqual([1, 2]);
+			expect([1, 2, 3, 4].intersect([1, 2, 3, 4])).toEqual([1, 2, 3, 4]);
+			expect(["a", "b", "c", "d"].intersect(["a", "b"])).toEqual(["a", "b"]);
+			// Should display error in IDE
+			// [{}].intersect([])
+		});
+	});
 });
