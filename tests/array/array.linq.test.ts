@@ -1,6 +1,22 @@
 import "../../src/array/array.linq";
 
 describe("Array linq", () => {
+	// Prepare data
+	type Person = { name: string };
+	type Pet = { name: string; owner: Person };
+	const magnus = { name: "Magnus" };
+	const terry = { name: "Terry" };
+	const charlotte = { name: "Charlotte" };
+
+	const people: Person[] = [magnus, terry, charlotte];
+
+	const barley = { name: "Barley", owner: terry };
+	const boots = { name: "Boots", owner: terry };
+	const whiskers = { name: "Whiskers", owner: charlotte };
+	const daisy = { name: "Daisy", owner: magnus };
+
+	const pets: Pet[] = [barley, boots, whiskers, daisy];
+
 	describe("#select()", () => {
 		it("should return the mapped array", () => {
 			expect([1, 2, 3].select((n) => n + 1)).toEqual([2, 3, 4]);
@@ -181,21 +197,6 @@ describe("Array linq", () => {
 
 	describe("#groupJoin()", () => {
 		it("should return the grouped array", () => {
-			type Person = { name: string };
-			type Pet = { name: string; owner: Person };
-			const magnus = { name: "Magnus" };
-			const terry = { name: "Terry" };
-			const charlotte = { name: "Charlotte" };
-
-			const people: Person[] = [magnus, terry, charlotte];
-
-			const barley = { name: "Barley", owner: terry };
-			const boots = { name: "Boots", owner: terry };
-			const whiskers = { name: "Whiskers", owner: charlotte };
-			const daisy = { name: "Daisy", owner: magnus };
-
-			const pets: Pet[] = [barley, boots, whiskers, daisy];
-
 			const result = people.groupJoin(
 				pets,
 				(person) => person,
@@ -229,6 +230,39 @@ describe("Array linq", () => {
 			expect(["a", "b", "c", "d"].intersect(["a", "b"])).toEqual(["a", "b"]);
 			// Should display error in IDE
 			// [{}].intersect([])
+		});
+	});
+
+	describe("#join()", () => {
+		it("should return the joined array", () => {
+			const result = people.linqJoin(
+				pets,
+				(person) => person,
+				(pet) => pet.owner,
+				(person, pet) => ({
+					ownerName: person.name,
+					petName: pet.name,
+				}),
+			);
+			expect(result.length).toBe(4);
+			expect(result).toMatchObject([
+				{
+					ownerName: "Magnus",
+					petName: "Daisy",
+				},
+				{
+					ownerName: "Terry",
+					petName: "Barley",
+				},
+				{
+					ownerName: "Terry",
+					petName: "Boots",
+				},
+				{
+					ownerName: "Charlotte",
+					petName: "Whiskers",
+				},
+			]);
 		});
 	});
 });

@@ -39,6 +39,13 @@ declare global {
 			resultSelector: (outer: T, inner: U[]) => V,
 		): V[];
 		intersect<U extends number | string>(this: U[], items: U[]): U[];
+		linqJoin<U, R, V>(
+			this: object[],
+			inner: U[],
+			outerKeySelector: (item: T) => R,
+			innerKeySelector: (item: U) => R,
+			resultSelector: (outer: T, inner: U) => V,
+		): V[];
 	}
 }
 
@@ -234,14 +241,20 @@ if (!Array.prototype.groupJoin) {
 			innerKeySelector,
 			resultSelector,
 		) {
-			return this.map((outer) =>
-				resultSelector(
-					outer,
-					inner.filter(
-						(inner) => innerKeySelector(inner) === outerKeySelector(outer),
+			const result = [];
+
+			for (const outer of this ?? []) {
+				result.push(
+					resultSelector(
+						outer,
+						inner.filter(
+							(inner) => innerKeySelector(inner) === outerKeySelector(outer),
+						),
 					),
-				),
-			);
+				);
+			}
+
+			return result;
 		},
 	});
 }
@@ -252,6 +265,34 @@ if (!Array.prototype.intersect) {
 		configurable: false,
 		value: function (itemsToIntersect) {
 			return this.filter((item) => itemsToIntersect.includes(item));
+		},
+	});
+}
+if (!Array.prototype.linqJoin) {
+	Object.defineProperty(Array.prototype, "linqJoin", {
+		enumerable: false,
+		writable: false,
+		configurable: false,
+		value: function (
+			innerArray,
+			outerKeySelector,
+			innerKeySelector,
+			resultSelector,
+		) {
+			const result = [];
+
+			for (const outer of this) {
+				for (const inner of innerArray) {
+					const outerKey = outerKeySelector(outer);
+					const innerKey = innerKeySelector(inner);
+
+					if (outerKey === innerKey) {
+						result.push(resultSelector(outer, inner));
+					}
+				}
+			}
+
+			return result;
 		},
 	});
 }
