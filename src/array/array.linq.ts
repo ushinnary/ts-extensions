@@ -2,44 +2,44 @@ export {};
 declare global {
 	interface Array<T> {
 		/// Returns mapped array.
-		select<U>(selector?: (item: T) => U): U[];
+		Select<U>(selector?: (item: T) => U): U[];
 		/// Returns filtered array.
-		where(predicate?: (item: T) => boolean): T[];
-		aggregate<R, U = T>(
+		Where(predicate?: (item: T) => boolean): T[];
+		Aggregate<R, U = T>(
 			seed: U,
 			accumulator: (acc: U, item: T) => U,
 			mapper: (item: U) => R,
 		): R;
-		aggregate<U = T>(seed: U, accumulator: (acc: U, item: T) => U): U;
-		aggregate<R, U = T>(
+		Aggregate<U = T>(seed: U, accumulator: (acc: U, item: T) => U): U;
+		Aggregate<R, U = T>(
 			accumulator: (acc: U, item: T) => U,
 			mapper: (item: U) => R,
 		): R;
-		aggregate<U = T>(accumulator: (acc: U, item: T) => U): U;
-		append(...items: T[]): T[];
-		average(this: number[]): number;
-		min(this: number[]): number;
-		max(this: number[]): number;
-		chunk(size: number): T[][];
-		distinct(this: (number | string)[]): T[];
-		distinctBy(this: object[], key: keyof T): T[];
-		except<U extends number | string>(this: U[], items: U[]): U[];
-		exceptBy(this: object[], items: Partial<T>[], key: keyof T): T[];
-		groupBy<U, R, V>(
+		Aggregate<U = T>(accumulator: (acc: U, item: T) => U): U;
+		Append(...items: T[]): T[];
+		Average(this: number[]): number;
+		Min(this: number[]): number;
+		Max(this: number[]): number;
+		Chunk(size: number): T[][];
+		Distinct(this: (number | string)[]): T[];
+		DistinctBy(this: object[], key: keyof T): T[];
+		Except<U extends number | string>(this: U[], items: U[]): U[];
+		ExceptBy(this: object[], items: Partial<T>[], key: keyof T): T[];
+		GroupBy<U, R, V>(
 			this: object[],
 			groupingBy: (item: T) => U,
 			groupRes: (item: T) => R,
 			finalMap: (groupKey: U, groupValues: R[]) => V,
 		): V[];
-		groupJoin<U, R, V>(
+		GroupJoin<U, R, V>(
 			this: object[],
 			inner: U[],
 			outerKeySelector: (item: T) => R,
 			innerKeySelector: (item: U) => R,
 			resultSelector: (outer: T, inner: U[]) => V,
 		): V[];
-		intersect<U extends number | string>(this: U[], items: U[]): U[];
-		linqJoin<U, R, V>(
+		Intersect<U extends number | string>(this: U[], items: U[]): U[];
+		Join<U, R, V>(
 			this: object[],
 			inner: U[],
 			outerKeySelector: (item: T) => R,
@@ -49,8 +49,8 @@ declare global {
 	}
 }
 
-if (!Array.prototype.select) {
-	Object.defineProperty(Array.prototype, "select", {
+if (!Array.prototype.Select) {
+	Object.defineProperty(Array.prototype, "Select", {
 		enumerable: false,
 		writable: false,
 		configurable: false,
@@ -60,8 +60,8 @@ if (!Array.prototype.select) {
 	});
 }
 
-if (!Array.prototype.where) {
-	Object.defineProperty(Array.prototype, "where", {
+if (!Array.prototype.Where) {
+	Object.defineProperty(Array.prototype, "Where", {
 		enumerable: false,
 		writable: false,
 		configurable: false,
@@ -71,8 +71,8 @@ if (!Array.prototype.where) {
 	});
 }
 
-if (!Array.prototype.aggregate) {
-	Object.defineProperty(Array.prototype, "aggregate", {
+if (!Array.prototype.Aggregate) {
+	Object.defineProperty(Array.prototype, "Aggregate", {
 		enumerable: false,
 		writable: false,
 		configurable: false,
@@ -95,8 +95,8 @@ if (!Array.prototype.aggregate) {
 	});
 }
 
-if (!Array.prototype.append) {
-	Object.defineProperty(Array.prototype, "append", {
+if (!Array.prototype.Append) {
+	Object.defineProperty(Array.prototype, "Append", {
 		enumerable: false,
 		writable: false,
 		configurable: false,
@@ -106,8 +106,8 @@ if (!Array.prototype.append) {
 	});
 }
 
-if (!Array.prototype.average) {
-	Object.defineProperty(Array.prototype, "average", {
+if (!Array.prototype.Average) {
+	Object.defineProperty(Array.prototype, "Average", {
 		enumerable: false,
 		writable: false,
 		configurable: false,
@@ -121,8 +121,8 @@ if (!Array.prototype.average) {
 	});
 }
 
-if (!Array.prototype.chunk) {
-	Object.defineProperty(Array.prototype, "chunk", {
+if (!Array.prototype.Chunk) {
+	Object.defineProperty(Array.prototype, "Chunk", {
 		enumerable: false,
 		writable: false,
 		configurable: false,
@@ -133,8 +133,8 @@ if (!Array.prototype.chunk) {
 		},
 	});
 }
-if (!Array.prototype.distinct) {
-	Object.defineProperty(Array.prototype, "distinct", {
+if (!Array.prototype.Distinct) {
+	Object.defineProperty(Array.prototype, "Distinct", {
 		enumerable: false,
 		writable: false,
 		configurable: false,
@@ -143,8 +143,8 @@ if (!Array.prototype.distinct) {
 		},
 	});
 }
-if (!Array.prototype.distinctBy) {
-	Object.defineProperty(Array.prototype, "distinctBy", {
+if (!Array.prototype.DistinctBy) {
+	Object.defineProperty(Array.prototype, "DistinctBy", {
 		enumerable: false,
 		writable: false,
 		configurable: false,
@@ -156,8 +156,8 @@ if (!Array.prototype.distinctBy) {
 		},
 	});
 }
-if (!Array.prototype.except) {
-	Object.defineProperty(Array.prototype, "except", {
+if (!Array.prototype.Except) {
+	Object.defineProperty(Array.prototype, "Except", {
 		enumerable: false,
 		writable: false,
 		configurable: false,
@@ -166,8 +166,8 @@ if (!Array.prototype.except) {
 		},
 	});
 }
-if (!Array.prototype.exceptBy) {
-	Object.defineProperty(Array.prototype, "exceptBy", {
+if (!Array.prototype.ExceptBy) {
+	Object.defineProperty(Array.prototype, "ExceptBy", {
 		enumerable: false,
 		writable: false,
 		configurable: false,
@@ -178,8 +178,8 @@ if (!Array.prototype.exceptBy) {
 		},
 	});
 }
-if (!Array.prototype.groupBy) {
-	Object.defineProperty(Array.prototype, "groupBy", {
+if (!Array.prototype.GroupBy) {
+	Object.defineProperty(Array.prototype, "GroupBy", {
 		enumerable: false,
 		writable: false,
 		configurable: false,
@@ -204,8 +204,8 @@ if (!Array.prototype.groupBy) {
 		},
 	});
 }
-if (!Array.prototype.min) {
-	Object.defineProperty(Array.prototype, "min", {
+if (!Array.prototype.Min) {
+	Object.defineProperty(Array.prototype, "Min", {
 		enumerable: false,
 		writable: false,
 		configurable: false,
@@ -217,8 +217,8 @@ if (!Array.prototype.min) {
 		},
 	});
 }
-if (!Array.prototype.max) {
-	Object.defineProperty(Array.prototype, "max", {
+if (!Array.prototype.Max) {
+	Object.defineProperty(Array.prototype, "Max", {
 		enumerable: false,
 		writable: false,
 		configurable: false,
@@ -230,8 +230,8 @@ if (!Array.prototype.max) {
 		},
 	});
 }
-if (!Array.prototype.groupJoin) {
-	Object.defineProperty(Array.prototype, "groupJoin", {
+if (!Array.prototype.GroupJoin) {
+	Object.defineProperty(Array.prototype, "GroupJoin", {
 		enumerable: false,
 		writable: false,
 		configurable: false,
@@ -258,8 +258,8 @@ if (!Array.prototype.groupJoin) {
 		},
 	});
 }
-if (!Array.prototype.intersect) {
-	Object.defineProperty(Array.prototype, "intersect", {
+if (!Array.prototype.Intersect) {
+	Object.defineProperty(Array.prototype, "Intersect", {
 		enumerable: false,
 		writable: false,
 		configurable: false,
@@ -268,8 +268,8 @@ if (!Array.prototype.intersect) {
 		},
 	});
 }
-if (!Array.prototype.linqJoin) {
-	Object.defineProperty(Array.prototype, "linqJoin", {
+if (!Array.prototype.Join) {
+	Object.defineProperty(Array.prototype, "Join", {
 		enumerable: false,
 		writable: false,
 		configurable: false,

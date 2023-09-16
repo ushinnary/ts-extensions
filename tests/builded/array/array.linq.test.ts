@@ -3,6 +3,6 @@ initArrayLinqExtension();
 
 describe("Array", () => {
 	it("Trying to use array.linq.ts from build", () => {
-		expect([1, 2, 3].average()).toEqual(2);
+		expect([1, 2, 3].Average()).toEqual(2);
 	});
 });

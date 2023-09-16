@@ -19,40 +19,40 @@ describe("Array linq", () => {
 
 	describe("#select()", () => {
 		it("should return the mapped array", () => {
-			expect([1, 2, 3].select((n) => n + 1)).toEqual([2, 3, 4]);
+			expect([1, 2, 3].Select((n) => n + 1)).toEqual([2, 3, 4]);
 		});
 
 		it("should return the original array if no selector is provided", () => {
-			expect([1, 2, 3].select()).toEqual([1, 2, 3]);
+			expect([1, 2, 3].Select()).toEqual([1, 2, 3]);
 		});
 	});
 
 	describe("#where()", () => {
 		it("should return the filtered array", () => {
-			expect([1, 2, 3].where((n) => n > 1)).toEqual([2, 3]);
+			expect([1, 2, 3].Where((n) => n > 1)).toEqual([2, 3]);
 		});
 
 		it("should return the original array if no predicate is provided", () => {
-			expect([1, 2, 3].where()).toEqual([1, 2, 3]);
+			expect([1, 2, 3].Where()).toEqual([1, 2, 3]);
 		});
 	});
 
 	describe("#aggregate()", () => {
 		it("should return the aggregated value with initial value", () => {
-			expect([1, 2, 3].aggregate(1, (acc, item) => acc + item)).toEqual(7);
+			expect([1, 2, 3].Aggregate(1, (acc, item) => acc + item)).toEqual(7);
 		});
 
 		it("should return the aggregated value", () => {
-			expect([1, 2, 3].aggregate((acc, item) => acc + item)).toEqual(6);
+			expect([1, 2, 3].Aggregate((acc, item) => acc + item)).toEqual(6);
 		});
 
 		it("should return the aggregated value with seed", () => {
-			expect([1, 2, 3].aggregate(0, (acc, item) => acc + item)).toEqual(6);
+			expect([1, 2, 3].Aggregate(0, (acc, item) => acc + item)).toEqual(6);
 		});
 
 		it("should return the aggregated value with seed and mapper", () => {
 			expect(
-				[1, 2, 3].aggregate(
+				[1, 2, 3].Aggregate(
 					0,
 					(acc, item) => acc + item,
 					(item) => item.toString(),
@@ -64,7 +64,7 @@ describe("Array linq", () => {
 	describe("#append()", () => {
 		it("should return the appended array", () => {
 			const arr = [1, 2, 3];
-			expect(arr.append(4, 5, 6)).toEqual([1, 2, 3, 4, 5, 6]);
+			expect(arr.Append(4, 5, 6)).toEqual([1, 2, 3, 4, 5, 6]);
 			expect(arr).toEqual([1, 2, 3]);
 		});
 	});
@@ -72,8 +72,8 @@ describe("Array linq", () => {
 	describe("#average()", () => {
 		it("should return the average value", () => {
 			const arr = [1, 2, 3];
-			expect(arr.average()).toEqual(2);
-			expect([].average()).toEqual(0);
+			expect(arr.Average()).toEqual(2);
+			expect([].Average()).toEqual(0);
 			// Should show error in editor
 			// expect([""].average()).toEqual(0);
 		});
@@ -81,16 +81,16 @@ describe("Array linq", () => {
 
 	describe("#chunk()", () => {
 		it("should return the chunked array", () => {
-			expect([1, 2, 3, 4, 5].chunk(2)).toEqual([[1, 2], [3, 4], [5]]);
+			expect([1, 2, 3, 4, 5].Chunk(2)).toEqual([[1, 2], [3, 4], [5]]);
 		});
 	});
 
 	describe("#distinct()", () => {
 		it("should return the distinct array", () => {
-			expect([1, 2, 3, 4].distinct()).toEqual([1, 2, 3, 4]);
-			expect([1, 2, 2, 3, 3, 3, 4, 4, 4, 4].distinct()).toEqual([1, 2, 3, 4]);
+			expect([1, 2, 3, 4].Distinct()).toEqual([1, 2, 3, 4]);
+			expect([1, 2, 2, 3, 3, 3, 4, 4, 4, 4].Distinct()).toEqual([1, 2, 3, 4]);
 			expect(
-				["a", "b", "b", "c", "c", "c", "d", "d", "d", "d"].distinct(),
+				["a", "b", "b", "c", "c", "c", "d", "d", "d", "d"].Distinct(),
 			).toEqual(["a", "b", "c", "d"]);
 		});
 	});
@@ -109,7 +109,7 @@ describe("Array linq", () => {
 					{ id: 4, name: "h" },
 					{ id: 4, name: "i" },
 					{ id: 4, name: "j" },
-				].distinctBy("id"),
+				].DistinctBy("id"),
 			).toEqual([
 				{ id: 1, name: "a" },
 				{ id: 2, name: "b" },
@@ -121,9 +121,9 @@ describe("Array linq", () => {
 
 	describe("#except()", () => {
 		it("should return the excepted array", () => {
-			expect([1, 2, 3, 4].except([1, 2])).toEqual([3, 4]);
-			expect([1, 2, 3, 4].except([1, 2, 3, 4])).toEqual([]);
-			expect(["a", "b", "c", "d"].except(["a", "b"])).toEqual(["c", "d"]);
+			expect([1, 2, 3, 4].Except([1, 2])).toEqual([3, 4]);
+			expect([1, 2, 3, 4].Except([1, 2, 3, 4])).toEqual([]);
+			expect(["a", "b", "c", "d"].Except(["a", "b"])).toEqual(["c", "d"]);
 			// Should display error in IDE
 			// [{}].except([])
 		});
@@ -144,7 +144,7 @@ describe("Array linq", () => {
 					{ id: 4, name: "i" },
 					{ id: 4, name: "j" },
 					{ id: 5, name: "o" },
-				].exceptBy([{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }], "id"),
+				].ExceptBy([{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }], "id"),
 			).toEqual([{ id: 5, name: "o" }]);
 		});
 	});
@@ -163,7 +163,7 @@ describe("Array linq", () => {
 				{ id: 4, name: "i" },
 				{ id: 4, name: "j" },
 			];
-			const groupedItems = items.groupBy(
+			const groupedItems = items.GroupBy(
 				(item) => item.id,
 				(item) => item.name,
 				(groupKey, groupValues) => ({ id: groupKey, names: groupValues }),
@@ -179,8 +179,8 @@ describe("Array linq", () => {
 
 	describe("#min()", () => {
 		it("should return the minimum value", () => {
-			expect([1, 2, 3].min()).toEqual(1);
-			expect([].min()).toEqual(0);
+			expect([1, 2, 3].Min()).toEqual(1);
+			expect([].Min()).toEqual(0);
 			// Should show error in editor
 			// expect([""].min()).toEqual(0);
 		});
@@ -188,8 +188,8 @@ describe("Array linq", () => {
 
 	describe("#max()", () => {
 		it("should return the maximum value", () => {
-			expect([1, 2, 3].max()).toEqual(3);
-			expect([].max()).toEqual(0);
+			expect([1, 2, 3].Max()).toEqual(3);
+			expect([].Max()).toEqual(0);
 			// Should show error in editor
 			// expect([""].max()).toEqual(0);
 		});
@@ -197,13 +197,13 @@ describe("Array linq", () => {
 
 	describe("#groupJoin()", () => {
 		it("should return the grouped array", () => {
-			const result = people.groupJoin(
+			const result = people.GroupJoin(
 				pets,
 				(person) => person,
 				(pet) => pet.owner,
 				(person, petCollection) => ({
 					ownerName: person.name,
-					pets: petCollection.select((pet) => pet.name),
+					pets: petCollection.Select((pet) => pet.name),
 				}),
 			);
 			expect(result).toMatchObject([
@@ -225,9 +225,9 @@ describe("Array linq", () => {
 
 	describe("#intersect()", () => {
 		it("should return the intersected array", () => {
-			expect([1, 2, 3, 4].intersect([1, 2])).toEqual([1, 2]);
-			expect([1, 2, 3, 4].intersect([1, 2, 3, 4])).toEqual([1, 2, 3, 4]);
-			expect(["a", "b", "c", "d"].intersect(["a", "b"])).toEqual(["a", "b"]);
+			expect([1, 2, 3, 4].Intersect([1, 2])).toEqual([1, 2]);
+			expect([1, 2, 3, 4].Intersect([1, 2, 3, 4])).toEqual([1, 2, 3, 4]);
+			expect(["a", "b", "c", "d"].Intersect(["a", "b"])).toEqual(["a", "b"]);
 			// Should display error in IDE
 			// [{}].intersect([])
 		});
@@ -235,7 +235,7 @@ describe("Array linq", () => {
 
 	describe("#join()", () => {
 		it("should return the joined array", () => {
-			const result = people.linqJoin(
+			const result = people.Join(
 				pets,
 				(person) => person,
 				(pet) => pet.owner,
