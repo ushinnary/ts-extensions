@@ -46,6 +46,11 @@ declare global {
 			innerKeySelector: (item: U) => R,
 			resultSelector: (outer: T, inner: U) => V,
 		): V[];
+		First(): T | undefined;
+		Last(): T | undefined;
+		LongCount(predicate: (item: T) => boolean): number;
+		Prepend(...items: T[]): T[];
+		Single(predicate?: (item: T) => boolean): T | undefined;
 	}
 }
 
@@ -293,6 +298,59 @@ if (!Array.prototype.Join) {
 			}
 
 			return result;
+		},
+	});
+}
+if (!Array.prototype.First) {
+	Object.defineProperty(Array.prototype, "First", {
+		enumerable: false,
+		writable: false,
+		configurable: false,
+		value: function () {
+			return this[0];
+		},
+	});
+}
+if (!Array.prototype.Last) {
+	Object.defineProperty(Array.prototype, "Last", {
+		enumerable: false,
+		writable: false,
+		configurable: false,
+		value: function () {
+			if (this.length === 0) {
+				return undefined;
+			}
+			return this[this.length - 1];
+		},
+	});
+}
+if (!Array.prototype.LongCount) {
+	Object.defineProperty(Array.prototype, "LongCount", {
+		enumerable: false,
+		writable: false,
+		configurable: false,
+		value: function (filter) {
+			return this.filter(filter).length;
+		},
+	});
+}
+if (!Array.prototype.Prepend) {
+	Object.defineProperty(Array.prototype, "Prepend", {
+		enumerable: false,
+		writable: false,
+		configurable: false,
+		value: function (...items) {
+			return [...items, ...this];
+		},
+	});
+}
+if (!Array.prototype.Single) {
+	Object.defineProperty(Array.prototype, "Single", {
+		enumerable: false,
+		writable: false,
+		configurable: false,
+		value: function (predicate) {
+			return predicate ? this.find(predicate) : this[0];
 		},
 	});
 }

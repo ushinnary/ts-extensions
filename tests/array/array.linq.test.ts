@@ -265,4 +265,40 @@ describe("Array linq", () => {
 			]);
 		});
 	});
+
+	describe("#last()", () => {
+		it("should return the last element", () => {
+			expect([1, 2, 3].Last()).toEqual(3);
+			expect([].Last()).toEqual(undefined);
+		});
+	});
+
+	describe("#first()", () => {
+		it("should return the first element", () => {
+			expect([1, 2, 3].First()).toEqual(1);
+			expect([].First()).toEqual(undefined);
+		});
+	});
+
+	describe("#longCount()", () => {
+		it("should return the long count", () => {
+			expect([1, 2, 3].LongCount((n) => n > 2)).toEqual(1);
+			expect([].LongCount((n) => n === 0)).toEqual(0);
+		});
+	});
+
+	describe("#Prepend()", () => {
+		it("should return the prepended array", () => {
+			const arr = [1, 2, 3];
+			expect(arr.Prepend(4, 5, 6)).toEqual([4, 5, 6, 1, 2, 3]);
+			expect(arr).toEqual([1, 2, 3]);
+		});
+	});
+
+	describe("#single()", () => {
+		it("should return the single element", () => {
+			expect([1, 2, 3].Single((n) => n === 2)).toEqual(2);
+			expect([].Single((n) => n === 0)).toEqual(undefined);
+		});
+	});
 });
