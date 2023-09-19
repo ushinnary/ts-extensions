@@ -51,6 +51,16 @@ declare global {
 		LongCount(predicate: (item: T) => boolean): number;
 		Prepend(...items: T[]): T[];
 		Single(predicate?: (item: T) => boolean): T | undefined;
+		Skip(count: number): T[];
+		SkipWhile(predicate: (item: T) => boolean): T[];
+		Sum(this: number[]): number;
+		Take(count: number): T[];
+		TakeWhile(predicate: (item: T) => boolean): T[];
+		ToLookup<U, R>(
+			this: object[],
+			groupingBy: (item: T) => U,
+			groupRes: (item: T) => R,
+		): Map<U, R[]>;
 	}
 }
 
@@ -351,6 +361,90 @@ if (!Array.prototype.Single) {
 		configurable: false,
 		value: function (predicate) {
 			return predicate ? this.find(predicate) : this[0];
+		},
+	});
+}
+if (!Array.prototype.Skip) {
+	Object.defineProperty(Array.prototype, "Skip", {
+		enumerable: false,
+		writable: false,
+		configurable: false,
+		value: function (num) {
+			return this.slice(num);
+		},
+	});
+}
+if (!Array.prototype.SkipWhile) {
+	Object.defineProperty(Array.prototype, "SkipWhile", {
+		enumerable: false,
+		writable: false,
+		configurable: false,
+		value: function (predicate) {
+			let i = 0;
+			while (i < this.length && predicate(this[i])) {
+				i++;
+			}
+			return this.slice(i);
+		},
+	});
+}
+if (!Array.prototype.Sum) {
+	Object.defineProperty(Array.prototype, "Sum", {
+		enumerable: false,
+		writable: false,
+		configurable: false,
+		value: function () {
+			return this.reduce((acc, item) => acc + item, 0);
+		},
+	});
+}
+if (!Array.prototype.Take) {
+	Object.defineProperty(Array.prototype, "Take", {
+		enumerable: false,
+		writable: false,
+		configurable: false,
+		value: function (nbToTake) {
+			return this.slice(0, nbToTake);
+		},
+	});
+}
+if (!Array.prototype.TakeWhile) {
+	Object.defineProperty(Array.prototype, "TakeWhile", {
+		enumerable: false,
+		writable: false,
+		configurable: false,
+		value: function (predicate) {
+			let i = 0;
+			while (i < this.length && predicate(this[i])) {
+				i++;
+			}
+			return this.slice(0, i);
+		},
+	});
+}
+if (!Array.prototype.ToLookup) {
+	Object.defineProperty(Array.prototype, "ToLookup", {
+		enumerable: false,
+		writable: false,
+		configurable: false,
+		value: function (groupingBy, groupRes) {
+			type TKey = ReturnType<typeof groupingBy>;
+			type TValue = ReturnType<typeof groupRes>;
+
+			const initialReduceValue: Record<TKey, TValue[]> = {};
+			const obj = this.reduce((acc, item) => {
+				const key = groupingBy(item);
+				const value = groupRes(item);
+
+				if (!acc[key]) {
+					acc[key] = [];
+				}
+				acc[key].push(value);
+
+				return acc;
+			}, initialReduceValue);
+
+			return obj;
 		},
 	});
 }

@@ -301,4 +301,70 @@ describe("Array linq", () => {
 			expect([].Single((n) => n === 0)).toEqual(undefined);
 		});
 	});
+
+	describe("#Skip()", () => {
+		it("should return the skipped array", () => {
+			expect([1, 2, 3, 4, 5].Skip(2)).toEqual([3, 4, 5]);
+		});
+	});
+
+	describe("#SkipWhile()", () => {
+		it("should return the skipped array", () => {
+			expect([1, 2, 3, 4, 5].SkipWhile((n) => n < 3)).toEqual([3, 4, 5]);
+		});
+	});
+
+	describe("Sum", () => {
+		it("should return the sum of all numbers in the array", () => {
+			const arr = [1, 2, 3, 4, 5];
+			const result = arr.Sum();
+			expect(result).toEqual(15);
+		});
+
+		it("should return 0 for an empty array", () => {
+			const arr: number[] = [];
+			const result = arr.Sum();
+			expect(result).toEqual(0);
+		});
+	});
+
+	describe("#Take()", () => {
+		it("should return the taken array", () => {
+			expect([1, 2, 3, 4, 5].Take(2)).toEqual([1, 2]);
+			expect([].Take(2)).toEqual([]);
+		});
+	});
+
+	describe("#TakeWhile()", () => {
+		it("should return the taken array", () => {
+			expect([1, 2, 3, 4, 5].TakeWhile((n) => n < 3)).toEqual([1, 2]);
+			expect([].TakeWhile((n) => n < 3)).toEqual([]);
+		});
+	});
+
+	describe("#ToLookup()", () => {
+		it("should return the lookup", () => {
+			const lookup = people.ToLookup(
+				(person) => person.name,
+				(person) => person.name,
+			);
+			expect(lookup).toMatchObject({
+				Magnus: ["Magnus"],
+				Terry: ["Terry"],
+				Charlotte: ["Charlotte"],
+			});
+		});
+
+		it("should return the lookup by first letter", () => {
+			const lookup = people.ToLookup(
+				(person) => person.name[0],
+				(person) => person.name,
+			);
+			expect(lookup).toMatchObject({
+				M: ["Magnus"],
+				T: ["Terry"],
+				C: ["Charlotte"],
+			});
+		});
+	});
 });
