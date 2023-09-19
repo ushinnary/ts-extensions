@@ -367,4 +367,20 @@ describe("Array linq", () => {
 			});
 		});
 	});
+
+	describe("#Union()", () => {
+		it("should return the unioned array", () => {
+			expect([1, 2, 3, 4].Union([1, 2])).toEqual([1, 2, 3, 4]);
+			expect([1, 2, 3, 4].Union([1, 2, 3, 4])).toEqual([1, 2, 3, 4]);
+			expect(["a", "b", "c", "d"].Union(["a", "b"])).toEqual([
+				"a",
+				"b",
+				"c",
+				"d",
+			]);
+			expect([1].Union([2])).toEqual([1, 2]);
+			// Should display error in IDE
+			// [{}].union([])
+		});
+	});
 });

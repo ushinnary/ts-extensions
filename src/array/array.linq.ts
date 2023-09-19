@@ -61,6 +61,7 @@ declare global {
 			groupingBy: (item: T) => U,
 			groupRes: (item: T) => R,
 		): Map<U, R[]>;
+		Union<U extends number | string>(this: U[], items: U[]): U[];
 	}
 }
 
@@ -445,6 +446,16 @@ if (!Array.prototype.ToLookup) {
 			}, initialReduceValue);
 
 			return obj;
+		},
+	});
+}
+if (!Array.prototype.Union) {
+	Object.defineProperty(Array.prototype, "Union", {
+		enumerable: false,
+		writable: false,
+		configurable: false,
+		value: function (secondArr) {
+			return [...new Set([...this, ...secondArr])];
 		},
 	});
 }
