@@ -102,4 +102,13 @@ describe("Array rust", () => {
 			expect(array).toEqual([1, 2, 3, 4, 5, 2]);
 		});
 	});
+
+	describe("#remove()", () => {
+		it("should remove the element at the given index and return it", () => {
+			const array = [1, 2, 3, 4, 5, 6];
+			const removed = array.remove(3);
+			expect(array).toEqual([1, 2, 3, 5, 6]);
+			expect(removed).toEqual(4);
+		});
+	});
 });
