@@ -7,3 +7,7 @@ export async function initArrayLinqExtension() {
 export async function initNumberRustExtension() {
 	return import("./number/number.rust");
 }
+
+export async function initStringRustExtension() {
+	return import("./string/string.rust");
+}
