@@ -4,15 +4,15 @@ declare global {
 		/// Returns the difference between two numbers.
 		diff(num: number): number;
 		/// Returns the absolute difference between two numbers.
-		absDiff(num: number): number;
+		abs_diff(num: number): number;
 		/// Returns the floor of the division of two numbers.
-		divFloor(num: number): number;
+		div_floor(num: number): number;
 		/// Returns the power of a number.
 		pow(num: number): number;
 		/// Returns the difference between two numbers, but never below 0.
-		saturatingSub(num: number): number;
+		saturating_sub(num: number): number;
 		/// Returns an array of numbers from the number to the given number.
-		rangeUpTo(num: number): number[];
+		range_up_to(num: number): number[];
 		/// Returns the minimum of the two numbers.
 		min(num: number): number;
 		/// Returns the maximum of the two numbers.
@@ -20,7 +20,7 @@ declare global {
 		/// Returns the number clamped between the two numbers.
 		clamp(min: number, max: number): number;
 		/// Returns an array of numbers from the number to the given number.
-		rangeDownTo(num: number): number[];
+		range_down_to(num: number): number[];
 	}
 }
 if (!Number.prototype.diff) {
@@ -28,13 +28,13 @@ if (!Number.prototype.diff) {
 		return this.valueOf() - num;
 	};
 }
-if (!Number.prototype.absDiff) {
-	Number.prototype.absDiff = function (num) {
+if (!Number.prototype.abs_diff) {
+	Number.prototype.abs_diff = function (num) {
 		return Math.abs(this.valueOf() - num);
 	};
 }
-if (!Number.prototype.divFloor) {
-	Number.prototype.divFloor = function (num) {
+if (!Number.prototype.div_floor) {
+	Number.prototype.div_floor = function (num) {
 		return Math.floor(this.valueOf() / num);
 	};
 }
@@ -43,8 +43,8 @@ if (!Number.prototype.pow) {
 		return this.valueOf() ** num;
 	};
 }
-if (!Number.prototype.saturatingSub) {
-	Number.prototype.saturatingSub = function (num) {
+if (!Number.prototype.saturating_sub) {
+	Number.prototype.saturating_sub = function (num) {
 		return Math.max(this.valueOf() - Math.abs(num), 0);
 	};
 }
@@ -63,17 +63,17 @@ if (!Number.prototype.clamp) {
 		return Math.min(Math.max(this.valueOf(), min), max);
 	};
 }
-if (!Number.prototype.rangeUpTo) {
-	Number.prototype.rangeUpTo = function (num) {
-		const nbOfElementsToGenerate = num.saturatingSub(this.valueOf() - 1);
+if (!Number.prototype.range_up_to) {
+	Number.prototype.range_up_to = function (num) {
+		const nbOfElementsToGenerate = num.saturating_sub(this.valueOf() - 1);
 		return [...Array(nbOfElementsToGenerate).keys()].map(
 			(i) => i + this.valueOf(),
 		);
 	};
 }
-if (!Number.prototype.rangeDownTo) {
-	Number.prototype.rangeDownTo = function (num) {
-		const nbOfElementsToGenerate = this.valueOf().saturatingSub(num - 1);
+if (!Number.prototype.range_down_to) {
+	Number.prototype.range_down_to = function (num) {
+		const nbOfElementsToGenerate = this.valueOf().saturating_sub(num - 1);
 		return [...Array(nbOfElementsToGenerate).keys()].map(
 			(i) => this.valueOf() - i,
 		);

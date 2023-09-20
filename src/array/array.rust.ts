@@ -23,6 +23,7 @@ declare global {
 		dedup(): void;
 		/// Removes and returns the element at position index within the array.
 		remove(index: number): T;
+		/// Retains only the elements specified by the predicate.
 		retain(f: (item: T) => boolean): void;
 	}
 }

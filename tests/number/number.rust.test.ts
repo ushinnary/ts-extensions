@@ -10,15 +10,15 @@ describe("Number", () => {
 
 	describe("#absDiff()", () => {
 		it("should return the absolute difference between two numbers", () => {
-			expect((5).absDiff(3)).toEqual(2);
-			expect((3).absDiff(5)).toEqual(2);
+			expect((5).abs_diff(3)).toEqual(2);
+			expect((3).abs_diff(5)).toEqual(2);
 		});
 	});
 
 	describe("#divFloor()", () => {
 		it("should return the floor of the division of two numbers", () => {
-			expect((5).divFloor(3)).toEqual(1);
-			expect((5).divFloor(13)).toEqual(0);
+			expect((5).div_floor(3)).toEqual(1);
+			expect((5).div_floor(13)).toEqual(0);
 		});
 	});
 
@@ -31,8 +31,8 @@ describe("Number", () => {
 
 	describe("#saturatingSub()", () => {
 		it("should return the difference between two numbers, but never below 0", () => {
-			expect((5).saturatingSub(3)).toEqual(2);
-			expect((5).saturatingSub(13)).toEqual(0);
+			expect((5).saturating_sub(3)).toEqual(2);
+			expect((5).saturating_sub(13)).toEqual(0);
 		});
 	});
 
@@ -60,17 +60,17 @@ describe("Number", () => {
 
 	describe("#rangeUpTo()", () => {
 		it("should return an array of numbers from the number to the given number", () => {
-			expect((5).rangeUpTo(3)).toEqual([]);
-			expect((5).rangeUpTo(5)).toEqual([5]);
-			expect((5).rangeUpTo(13)).toEqual([5, 6, 7, 8, 9, 10, 11, 12, 13]);
+			expect((5).range_up_to(3)).toEqual([]);
+			expect((5).range_up_to(5)).toEqual([5]);
+			expect((5).range_up_to(13)).toEqual([5, 6, 7, 8, 9, 10, 11, 12, 13]);
 		});
 	});
 
 	describe("#rangeDownTo()", () => {
 		it("should return an array of numbers from the number to the given number", () => {
-			expect((5).rangeDownTo(3)).toEqual([5, 4, 3]);
-			expect((5).rangeDownTo(5)).toEqual([5]);
-			expect((5).rangeDownTo(13)).toEqual([]);
+			expect((5).range_down_to(3)).toEqual([5, 4, 3]);
+			expect((5).range_down_to(5)).toEqual([5]);
+			expect((5).range_down_to(13)).toEqual([]);
 		});
 	});
 });
