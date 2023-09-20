@@ -73,4 +73,11 @@ describe("Number", () => {
 			expect((5).range_down_to(13)).toEqual([]);
 		});
 	});
+
+	describe("#isPowerOfTwo()", () => {
+		it("should return true if the number is a power of two", () => {
+			expect((5).is_power_of_two()).toBeFalsy();
+			expect((8).is_power_of_two()).toBeTruthy();
+		});
+	});
 });

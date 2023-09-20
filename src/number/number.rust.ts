@@ -21,6 +21,7 @@ declare global {
 		clamp(min: number, max: number): number;
 		/// Returns an array of numbers from the number to the given number.
 		range_down_to(num: number): number[];
+		is_power_of_two(): boolean;
 	}
 }
 if (!Number.prototype.diff) {
@@ -77,5 +78,10 @@ if (!Number.prototype.range_down_to) {
 		return [...Array(nbOfElementsToGenerate).keys()].map(
 			(i) => this.valueOf() - i,
 		);
+	};
+}
+if (!Number.prototype.is_power_of_two) {
+	Number.prototype.is_power_of_two = function () {
+		return (this.valueOf() & (this.valueOf() - 1)) === 0;
 	};
 }
