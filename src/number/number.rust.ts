@@ -7,6 +7,8 @@ declare global {
 		abs_diff(num: number): number;
 		/// Returns the floor of the division of two numbers.
 		div_floor(num: number): number;
+		/// Returns the ceiling of the division of two numbers.
+		div_ceil(num: number): number;
 		/// Returns the power of a number.
 		pow(num: number): number;
 		/// Returns the difference between two numbers, but never below 0.
@@ -91,5 +93,10 @@ if (!Number.prototype.is_power_of_two) {
 if (!Number.prototype.midpoint) {
 	Number.prototype.midpoint = function (higherNumber: number) {
 		return Math.floor((this.valueOf() + higherNumber) / 2);
+	};
+}
+if (!Number.prototype.div_ceil) {
+	Number.prototype.div_ceil = function (divisor: number) {
+		return Math.ceil(this.valueOf() / divisor);
 	};
 }

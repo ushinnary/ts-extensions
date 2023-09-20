@@ -88,4 +88,12 @@ describe("Number", () => {
 			expect((1).midpoint(4)).toEqual(2);
 		});
 	});
+
+	describe("#div_ceil()", () => {
+		it("should return the ceil of the division of two numbers", () => {
+			expect((5).div_ceil(3)).toEqual(2);
+			expect((5).div_ceil(13)).toEqual(1);
+			expect((8).div_ceil(3)).toEqual(3);
+		});
+	});
 });
