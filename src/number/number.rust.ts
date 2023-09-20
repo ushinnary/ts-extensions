@@ -21,7 +21,10 @@ declare global {
 		clamp(min: number, max: number): number;
 		/// Returns an array of numbers from the number to the given number.
 		range_down_to(num: number): number[];
+		/// Returns true if the number is a power of two.
 		is_power_of_two(): boolean;
+		/// Returns the midpoint between two numbers.
+		midpoint(num: number): number;
 	}
 }
 if (!Number.prototype.diff) {
@@ -83,5 +86,10 @@ if (!Number.prototype.range_down_to) {
 if (!Number.prototype.is_power_of_two) {
 	Number.prototype.is_power_of_two = function () {
 		return (this.valueOf() & (this.valueOf() - 1)) === 0;
+	};
+}
+if (!Number.prototype.midpoint) {
+	Number.prototype.midpoint = function (higherNumber: number) {
+		return Math.floor((this.valueOf() + higherNumber) / 2);
 	};
 }

@@ -80,4 +80,12 @@ describe("Number", () => {
 			expect((8).is_power_of_two()).toBeTruthy();
 		});
 	});
+
+	describe("#midpoint()", () => {
+		it("should return the midpoint between two numbers", () => {
+			expect((5).midpoint(3)).toEqual(4);
+			expect((5).midpoint(13)).toEqual(9);
+			expect((1).midpoint(4)).toEqual(2);
+		});
+	});
 });
