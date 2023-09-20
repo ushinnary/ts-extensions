@@ -111,4 +111,12 @@ describe("Array rust", () => {
 			expect(removed).toEqual(4);
 		});
 	});
+
+	describe("#retain()", () => {
+		it("should remove all elements from the array for which the given function returns false", () => {
+			const array = [1, 2, 3, 4, 5, 6];
+			array.retain((item) => item % 2 === 0);
+			expect(array).toEqual([2, 4, 6]);
+		});
+	});
 });

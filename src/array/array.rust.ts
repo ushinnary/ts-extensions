@@ -21,7 +21,9 @@ declare global {
 		resize(len: number, value?: T): void;
 		/// Removes consecutive repeated elements in the array.
 		dedup(): void;
+		/// Removes and returns the element at position index within the array.
 		remove(index: number): T;
+		retain(f: (item: T) => boolean): void;
 	}
 }
 
@@ -154,6 +156,21 @@ if (!Array.prototype.remove) {
 		configurable: false,
 		value: function (index) {
 			return this.splice(index, 1)[0];
+		},
+	});
+}
+if (!Array.prototype.retain) {
+	Object.defineProperty(Array.prototype, "retain", {
+		enumerable: false,
+		writable: false,
+		configurable: false,
+		value: function (f) {
+			for (let i = 0; i < this.length; i++) {
+				if (!f(this[i])) {
+					this.splice(i, 1);
+					i--;
+				}
+			}
 		},
 	});
 }
