@@ -1,7 +1,9 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        "module": "NodeNext",
+        "esModuleInterop": true,
         "target": "ES2022",
+        "moduleResolution": "NodeNext",
         "declaration": true,
         "outDir": "./dist",
         "lib": [
@@ -11,5 +13,16 @@
     },
     "include": [
         "src/**/*"
-    ]
+    ],
+    "paths": {
+        "@array/*": [
+            "src/array/*"
+        ],
+        "@number/*": [
+            "src/number/*"
+        ],
+        "@string/*": [
+            "src/string/*"
+        ]
+    }
 }

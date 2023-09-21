@@ -1,5 +1,4 @@
-import { initArrayLinqExtension } from "../../../dist/index";
-initArrayLinqExtension();
+import "../../../dist/array/array.linq";
 
 describe("Array", () => {
 	it("Trying to use array.linq.ts from build", () => {

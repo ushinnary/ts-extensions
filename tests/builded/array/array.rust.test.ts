@@ -1,5 +1,4 @@
-import { initArrayRustExtension } from "../../../dist/index";
-initArrayRustExtension();
+import "../../../dist/array/array.rust";
 
 describe("Array", () => {
 	it("Trying to use array.rust.ts from build", () => {

@@ -1,13 +1,28 @@
 {
-  "name": "ts-extended-types",
-  "version": "0.0.1",
-  "description": "Add rust methods to TS base classes",
-  "main": "index.ts",
+  "name": "ts-extensials",
+  "version": "0.1.0",
+  "description": "Add Rust and LINQ methods to TS base classes",
+  "main": "dist/index.js",
+  "type": "module",
+  "files": [
+    "dist/array/array.linq.js",
+    "dist/array/array.linq.d.ts",
+    "dist/array/array.rust.js",
+    "dist/array/array.rust.d.ts",
+    "dist/string/string.rust.js",
+    "dist/string/string.rust.d.ts",
+    "dist/number/number.rust.js",
+    "dist/number/number.rust.d.ts"
+  ],
   "scripts": {
     "test": "jest",
     "format": "biome format --write ./src",
     "prepare": "husky install",
     "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ushinnary/ts-extensions"
   },
   "keywords": [
     "typescript"
