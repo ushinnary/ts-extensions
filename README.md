@@ -18,6 +18,7 @@ To use this project, follow these steps:
 
 1. Open your main file (e.g. `index.ts` or `main.ts`) to make it usable in a whole project
 2. Import the module you want to use (e.g `import 'ts-extensials/array/array.rust';`)
+3. To see all available extensions, check [Ready extensions list](./AvailableMethods.md)
  
 
 ## Code Examples

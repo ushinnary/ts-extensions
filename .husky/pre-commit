@@ -3,3 +3,4 @@
 
 npm run build
 npm run test
+node readme_fill.js
