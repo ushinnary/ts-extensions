@@ -57,6 +57,11 @@
 - [x] `is_power_of_two(): boolean;`
 - [x] `midpoint(num: number): number;`
 
+### Custom
+
+- [x] `removePercentage(percent: number): number;`
+- [x] `addPercentage(percent: number): number;`
+
 ## String
 
 ### Rust
@@ -70,4 +75,10 @@
 - [x] `is_ascii(): boolean;`
 - [x] `eq_ignore_ascii_case(other: string): boolean;`
 - [x] `repeat(times: number): string;`
+
+### Custom
+
+- [x] `wrapBetweenHtmlTags(start: string, end?: string): string;`
+- [x] `wrapBetweenHtmlTags(start: string[], end?: string[]): string;`
+- [x] `phoneNumberSplit(): string;`
 

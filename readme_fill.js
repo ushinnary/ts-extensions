@@ -6,7 +6,9 @@ const files = [
 	"array/array.linq.ts",
 	"array/array.rust.ts",
 	"number/number.rust.ts",
+	"number/number.custom.ts",
 	"string/string.rust.ts",
+	"string/string.custom.ts",
 ];
 const readmeFileName = "AvailableMethods.md";
 
