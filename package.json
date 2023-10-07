@@ -13,14 +13,7 @@
   },
   "type": "module",
   "files": [
-    "dist/array/array.linq.js",
-    "dist/array/array.linq.d.ts",
-    "dist/array/array.rust.js",
-    "dist/array/array.rust.d.ts",
-    "dist/string/string.rust.js",
-    "dist/string/string.rust.d.ts",
-    "dist/number/number.rust.js",
-    "dist/number/number.rust.d.ts"
+    "dist/*"
   ],
   "scripts": {
     "test": "jest",
