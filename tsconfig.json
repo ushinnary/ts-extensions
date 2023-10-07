@@ -1,28 +1,20 @@
 {
-    "compilerOptions": {
-        "module": "NodeNext",
-        "esModuleInterop": true,
-        "target": "ES2022",
-        "moduleResolution": "NodeNext",
-        "declaration": true,
-        "outDir": "./dist",
-        "lib": [
-            "ES2022"
-        ],
-        "baseUrl": "."
-    },
-    "include": [
-        "src/**/*"
-    ],
-    "paths": {
-        "@array/*": [
-            "src/array/*"
-        ],
-        "@number/*": [
-            "src/number/*"
-        ],
-        "@string/*": [
-            "src/string/*"
-        ]
-    }
+	"compilerOptions": {
+		"module": "NodeNext",
+		"esModuleInterop": true,
+		"target": "ES2022",
+		"moduleResolution": "NodeNext",
+		"declaration": true,
+		"outDir": "./dist",
+		"lib": ["ES2022"],
+		"baseUrl": ".",
+		"rootDirs": ["src", "tests"]
+	},
+	"include": ["src/**/*"],
+	"paths": {
+		"@array/*": ["src/array/*"],
+		"@number/*": ["src/number/*"],
+		"@string/*": ["src/string/*"],
+		"@dist/*": ["dist/*"]
+	}
 }

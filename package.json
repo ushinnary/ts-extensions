@@ -3,6 +3,14 @@
   "version": "0.1.1",
   "description": "Add Rust and LINQ methods to TS base classes",
   "main": "dist/index.js",
+  "exports": {
+    "array/rust": "./dist/array/array.rust.js",
+    "array/linq": "./dist/array/array.linq.js",
+    "number/custom": "./dist/number/number.custom.js",
+    "number/rust": "./dist/number/number.rust.js",
+    "string/rust": "./dist/string/string.rust.js",
+    "string/custom": "./dist/string/string.custom.js"
+  },
   "type": "module",
   "files": [
     "dist/array/array.linq.js",

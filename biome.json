@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "files": {
+    "exclude": ["tests/**/*"]
+  },
   "formatter": {
     "lineWidth": 80,
     "indentStyle": "tab",
