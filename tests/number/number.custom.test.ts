@@ -22,4 +22,26 @@ describe("Number", () => {
 			expect(num.addPercentage(0)).toBe(100);
 		});
 	});
+
+	describe("inBetween", () => {
+		it("should return true if number is between min and max", () => {
+			const num = 5;
+			expect(num.inBetween(0, 10)).toBe(true);
+			expect(num.inBetween(5, 10)).toBe(true);
+			expect(num.inBetween(0, 5)).toBe(true);
+		});
+
+		it("should return false if number is not between min and max", () => {
+			const num = 5;
+			expect(num.inBetween(6, 10)).toBe(false);
+			expect(num.inBetween(0, 4)).toBe(false);
+		});
+	});
+
+	describe("calculatePriceForTaxes", () => {
+		it("should calculate price for taxes", () => {
+			const num = 4;
+			expect(num.calculatePriceForTaxes(20)).toBe(5);
+		});
+	});
 });
