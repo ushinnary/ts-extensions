@@ -1,9 +1,9 @@
 export {};
 declare global {
 	interface Array<T> {
-		/// Returns mapped array.
+		/**  Returns mapped array. */
 		Select<U>(selector?: (item: T) => U): U[];
-		/// Returns filtered array.
+		/**  Returns filtered array. */
 		Where(predicate?: (item: T) => boolean): T[];
 		Aggregate<R, U = T>(
 			seed: U,

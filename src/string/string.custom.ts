@@ -8,8 +8,8 @@ declare global {
 		 */
 		wrapBetweenHtmlTags(start: string, end?: string): string;
 		wrapBetweenHtmlTags(start: string[], end?: string[]): string;
-		// Shows phone number in a readable way
-		// 0707070707 => 07 07 07 07 07
+		/**  Shows phone number in a readable way */
+		/**  0707070707 => 07 07 07 07 07 */
 		phoneNumberSplit(): string;
 	}
 }

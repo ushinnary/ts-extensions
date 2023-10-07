@@ -1,29 +1,29 @@
 export {};
 declare global {
 	interface Array<T> {
-		/// Returns the first element of the array.
+		/**  Returns the first element of the array. */
 		first(): T | undefined;
-		/// Returns the last element of the array.
+		/**  Returns the last element of the array. */
 		last(): T | undefined;
-		/// Appends the elements of the given array to the end of this array. The given array is emptied.
+		/**  Appends the elements of the given array to the end of this array. The given array is emptied. */
 		append(items: T[]): T[];
-		/// Removes the elements from the array and return them as a new array.
+		/**  Removes the elements from the array and return them as a new array. */
 		drain(fromIdx: number, toIdx: number): T[];
-		/// Removes all elements from the array.
+		/**  Removes all elements from the array. */
 		clear(): void;
-		/// Returns true if the array is empty.
+		/**  Returns true if the array is empty. */
 		is_empty(): boolean;
-		/// Removes all but the first n elements from the array.
+		/**  Removes all but the first n elements from the array. */
 		split_off(at: number): T[];
-		/// Resizes the array in-place so that len is the new length.
+		/**  Resizes the array in-place so that len is the new length. */
 		resize_with(len: number, f?: () => T): void;
-		/// Resizes the array in-place so that len is the new length.
+		/**  Resizes the array in-place so that len is the new length. */
 		resize(len: number, value?: T): void;
-		/// Removes consecutive repeated elements in the array.
+		/**  Removes consecutive repeated elements in the array. */
 		dedup(): void;
-		/// Removes and returns the element at position index within the array.
+		/**  Removes and returns the element at position index within the array. */
 		remove(index: number): T;
-		/// Retains only the elements specified by the predicate.
+		/**  Retains only the elements specified by the predicate. */
 		retain(f: (item: T) => boolean): void;
 	}
 }
