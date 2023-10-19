@@ -63,6 +63,8 @@
 - [x] `addPercentage(percent: number): number;`
 - [x] `inBetween(min: number, max: number): boolean;`
 - [x] `calculatePriceForTaxes(percent: number): number;`
+- [x] `lessThan(num: number): boolean;`
+- [x] `moreThan(num: number): boolean;`
 
 ## String
 
