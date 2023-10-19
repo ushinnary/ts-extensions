@@ -44,4 +44,28 @@ describe("Number", () => {
 			expect(num.calculatePriceForTaxes(20)).toBe(5);
 		});
 	});
+
+	describe("lessThan", () => {
+		it("should return true if number is less than another number", () => {
+			const num = 5;
+			expect(num.lessThan(10)).toBe(true);
+		});
+
+		it("should return false if number is not less than another number", () => {
+			const num = 5;
+			expect(num.lessThan(4)).toBe(false);
+		});
+	});
+
+	describe("moreThan", () => {
+		it("should return true if number is greater than another number", () => {
+			const num = 5;
+			expect(num.moreThan(4)).toBe(true);
+		});
+
+		it("should return false if number is not greater than another number", () => {
+			const num = 5;
+			expect(num.moreThan(10)).toBe(false);
+		});
+	});
 });
