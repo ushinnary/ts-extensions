@@ -68,4 +68,44 @@ describe("Number", () => {
 			expect(num.moreThan(10)).toBe(false);
 		});
 	});
+
+	describe("notZeroAndLessThan", () => {
+		const positiveNumber = 5;
+		it("should return true if number is different from zero and less than another number", () => {
+			expect(positiveNumber.notZeroAndLessThan(10)).toBe(true);
+		});
+
+		it("should return false if number is not different from zero and less than another number", () => {
+			expect(positiveNumber.notZeroAndLessThan(4)).toBe(false);
+		});
+
+		const zero = 0;
+		it("should return false if number is zero", () => {
+			expect(zero.notZeroAndLessThan(10)).toBe(false);
+		});
+
+		it("should return false if number is zero and less than another number", () => {
+			expect(zero.notZeroAndLessThan(-1)).toBe(false);
+		});
+	});
+
+	describe("notZeroAndMoreThan", () => {
+		const positiveNumber = 5;
+		it("should return true if number is different from zero and more than another number", () => {
+			expect(positiveNumber.notZeroAndMoreThan(4)).toBe(true);
+		});
+
+		it("should return false if number is not different from zero and more than another number", () => {
+			expect(positiveNumber.notZeroAndMoreThan(10)).toBe(false);
+		});
+
+		const zero = 0;
+		it("should return false if number is zero", () => {
+			expect(zero.notZeroAndMoreThan(10)).toBe(false);
+		});
+
+		it("should return false if number is zero and less than another number", () => {
+			expect(zero.notZeroAndMoreThan(-1)).toBe(false);
+		});
+	});
 });

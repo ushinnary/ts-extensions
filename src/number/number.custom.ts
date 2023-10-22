@@ -20,6 +20,10 @@ declare global {
 		lessThan(num: number): boolean;
 		/** Check if number is greater than another number */
 		moreThan(num: number): boolean;
+		/** Check if number is different from zero and less than another number */
+		notZeroAndLessThan(num: number): boolean;
+		/** Check if number is different from zero and more than another number */
+		notZeroAndMoreThan(num: number): boolean;
 	}
 }
 
@@ -56,5 +60,17 @@ if (!Number.prototype.lessThan) {
 if (!Number.prototype.moreThan) {
 	Number.prototype.moreThan = function (num) {
 		return this > num;
+	};
+}
+
+if (!Number.prototype.notZeroAndLessThan) {
+	Number.prototype.notZeroAndLessThan = function (num) {
+		return this !== 0 && this < num;
+	};
+}
+
+if (!Number.prototype.notZeroAndMoreThan) {
+	Number.prototype.notZeroAndMoreThan = function (num) {
+		return this !== 0 && this > num;
 	};
 }
