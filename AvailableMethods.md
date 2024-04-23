@@ -87,3 +87,4 @@
 - [x] `wrapBetweenHtmlTags(start: string, end?: string): string;`
 - [x] `wrapBetweenHtmlTags(start: string[], end?: string[]): string;`
 - [x] `phoneNumberSplit(): string;`
+
