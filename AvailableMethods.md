@@ -65,6 +65,8 @@
 - [x] `calculatePriceForTaxes(percent: number): number;`
 - [x] `lessThan(num: number): boolean;`
 - [x] `moreThan(num: number): boolean;`
+- [x] `notZeroAndLessThan(num: number): boolean;`
+- [x] `notZeroAndMoreThan(num: number): boolean;`
 
 ## String
 
@@ -85,4 +87,3 @@
 - [x] `wrapBetweenHtmlTags(start: string, end?: string): string;`
 - [x] `wrapBetweenHtmlTags(start: string[], end?: string[]): string;`
 - [x] `phoneNumberSplit(): string;`
-
