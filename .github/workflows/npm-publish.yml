@@ -16,13 +16,9 @@ jobs:
         with:
           node-version: "20.x"
           registry-url: "https://registry.npmjs.org"
-      - run: |
-          npm ci
-          npm build
-          npm test
-          sed 's#"main": "dist/index.js"#"main": "./index.js"#' package.json > ./dist/package.json
-      - name: Publish package on NPM 📦
-        run: npm publish
-        working-directory: ./dist
+      - run: npm ci
+      - run: npm build
+      - run: npm test
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
