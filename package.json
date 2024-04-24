@@ -1,6 +1,6 @@
 {
   "name": "ts-extensials",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Add Rust and LINQ methods to TS base classes",
   "main": "dist/index.js",
   "exports": {
@@ -9,7 +9,8 @@
     "number/custom": "./dist/number/number.custom.js",
     "number/rust": "./dist/number/number.rust.js",
     "string/rust": "./dist/string/string.rust.js",
-    "string/custom": "./dist/string/string.custom.js"
+    "string/custom": "./dist/string/string.custom.js",
+    "helpers/StringBuilder": "./dist/helpers/StringBuilder.js"
   },
   "type": "module",
   "files": [
