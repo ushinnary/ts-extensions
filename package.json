@@ -1,17 +1,8 @@
 {
   "name": "ts-extensials",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "Add Rust and LINQ methods to TS base classes",
   "main": "dist/index.js",
-  "exports": {
-    "array/rust": "./dist/array/array.rust.js",
-    "array/linq": "./dist/array/array.linq.js",
-    "number/custom": "./dist/number/number.custom.js",
-    "number/rust": "./dist/number/number.rust.js",
-    "string/rust": "./dist/string/string.rust.js",
-    "string/custom": "./dist/string/string.custom.js",
-    "helpers/StringBuilder": "./dist/helpers/StringBuilder.js"
-  },
   "type": "module",
   "files": [
     "dist/*"
@@ -32,19 +23,17 @@
   ],
   "author": "ushinnary",
   "license": "MIT",
-  "dependencies": {
-    "@biomejs/biome": "^1.7.1"
-  },
   "devDependencies": {
     "@babel/core": "^7.24.4",
     "@babel/preset-env": "^7.24.4",
     "@babel/preset-typescript": "^7.24.1",
+    "@biomejs/biome": "^1.7.1",
     "@jest/globals": "^29.7.0",
     "@types/jest": "^29.5.12",
     "babel-jest": "^29.7.0",
+    "husky": "^9.0.11",
     "jest": "^29.7.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.5",
-    "husky": "^9.0.11"
+    "typescript": "^5.4.5"
   }
 }
