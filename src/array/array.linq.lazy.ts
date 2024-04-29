@@ -41,53 +41,35 @@ export class IEnumerable<T> {
   public ToArray(): T[] {
     const result: T[] = [];
 
-    let foundNeeded = false;
-
-    for (const item of this.items) {
+    outer: for (const item of structuredClone(this.items)) {
       let newItem = item;
 
-      let shouldContinue = false;
-
-      for (const [action, callback] of this.stack) {
-        let shouldBreak = false;
-
+      inner: for (const [action, callback] of this.stack) {
         switch (action) {
           case ActionType.Filter: {
-            shouldBreak ||= !callback(newItem);
-            shouldContinue ||= shouldBreak;
+            if (!callback(newItem)) {
+              continue outer;
+            }
 
             break;
           }
           case ActionType.Map: {
             newItem = callback(newItem);
-
-            break;
+            continue inner;
           }
           case ActionType.First: {
             const isValid = callback(newItem);
 
-            shouldBreak = true;
-            shouldContinue = !isValid;
-            foundNeeded ||= isValid;
+            if (isValid) {
+              return [newItem];
+            }
 
-            break;
+            continue outer;
           }
         }
-
-        if (shouldBreak) {
-          break;
-        }
-      }
-
-      if (shouldContinue) {
-        continue;
       }
 
       result.push(newItem);
-
-      if (foundNeeded) {
-        break;
-      }
     }
 
     return result;
