@@ -1,4 +1,4 @@
-tsc
+npm run build
 npm run test
 npm run generate:doc
 git add AvailableMethods.md

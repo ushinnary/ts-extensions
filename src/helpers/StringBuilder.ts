@@ -1,263 +1,277 @@
 type TDirection = "ltr" | "rtl";
 /** Builder for a clearer string building. */
 export class StringBuilder {
-  /** Current string */
-  protected result: string;
+	/** Current string */
+	protected result: string;
 
-  constructor() {
-    this.result = "";
-  }
+	constructor() {
+		this.result = "";
+	}
 
-  /** Inserts raw text as is */
-  public regular(text: string) {
-    if (text) {
-      this.result += text;
-    }
+	/** Inserts raw text as is */
+	public regular(text: string) {
+		if (text) {
+			this.result += text;
+		}
 
-    return this;
-  }
+		return this;
+	}
 
-  /** Regular with space if text is not empty */
-  public regularS(text: string) {
-    this._insertSpaceIfNotEmpty(text);
+	/** Regular with space if text is not empty */
+	public regularS(text: string) {
+		this._insertSpaceIfNotEmpty(text);
 
-    return this.regular(text);
-  }
+		return this.regular(text);
+	}
 
-  // HTML Formatting
+	// HTML Formatting
 
-  /** <strong> - Important text */
-  public strong(text: string) {
-    if (text) {
-      this.result += this._wrap(text, "strong");
-    }
+	/** <strong> - Important text */
+	public strong(text: string) {
+		if (text) {
+			this.result += this._wrap(text, "strong");
+		}
 
-    return this;
-  }
+		return this;
+	}
 
-  /** Strong with space if text is not empty */
-  public strongS(text: string) {
-    this._insertSpaceIfNotEmpty(text);
+	/** Strong with space if text is not empty */
+	public strongS(text: string) {
+		this._insertSpaceIfNotEmpty(text);
 
-    return this.strong(text);
-  }
+		return this.strong(text);
+	}
 
-  /** <b> - Bold text */
-  public b(text: string) {
-    if (text) {
-      this.result += this._wrap(text, "b");
-    }
+	/** <b> - Bold text */
+	public b(text: string) {
+		if (text) {
+			this.result += this._wrap(text, "b");
+		}
 
-    return this;
-  }
+		return this;
+	}
 
-  /** Bold with space if text is not empty */
-  public bS(text: string) {
-    this._insertSpaceIfNotEmpty(text);
-    return this.b(text);
-  }
+	/** Bold with space if text is not empty */
+	public bS(text: string) {
+		this._insertSpaceIfNotEmpty(text);
+		return this.b(text);
+	}
 
-  /** <i> - Italic text */
-  public i(text: string) {
-    if (text) {
-      this.result += this._wrap(text, "i");
-    }
+	/** <i> - Italic text */
+	public i(text: string) {
+		if (text) {
+			this.result += this._wrap(text, "i");
+		}
 
-    return this;
-  }
+		return this;
+	}
 
-  /** Italic with space if text is not empty */
-  public iS(text: string) {
-    this._insertSpaceIfNotEmpty(text);
-    return this.i(text);
-  }
+	/** Italic with space if text is not empty */
+	public iS(text: string) {
+		this._insertSpaceIfNotEmpty(text);
+		return this.i(text);
+	}
 
-  /** <em> - Emphasized text */
-  public em(text: string) {
-    if (text) {
-      this.result += this._wrap(text, "em");
-    }
+	/** <em> - Emphasized text */
+	public em(text: string) {
+		if (text) {
+			this.result += this._wrap(text, "em");
+		}
 
-    return this;
-  }
+		return this;
+	}
 
-  /** Emphasized with space if text is not empty */
-  public emS(text: string) {
-    this._insertSpaceIfNotEmpty(text);
-    return this.em(text);
-  }
+	/** Emphasized with space if text is not empty */
+	public emS(text: string) {
+		this._insertSpaceIfNotEmpty(text);
+		return this.em(text);
+	}
 
-  /** <mark> - Marked text */
-  public mark(text: string) {
-    if (text) {
-      this.result += this._wrap(text, "mark");
-    }
+	/** <mark> - Marked text */
+	public mark(text: string) {
+		if (text) {
+			this.result += this._wrap(text, "mark");
+		}
 
-    return this;
-  }
+		return this;
+	}
 
-  /** Marked with space if text is not empty */
-  public markS(text: string) {
-    this._insertSpaceIfNotEmpty(text);
-    return this.mark(text);
-  }
+	/** Marked with space if text is not empty */
+	public markS(text: string) {
+		this._insertSpaceIfNotEmpty(text);
+		return this.mark(text);
+	}
 
-  /** <small> - Smaller text */
-  public small(text: string) {
-    if (text) {
-      this.result += this._wrap(text, "small");
-    }
+	/** <small> - Smaller text */
+	public small(text: string) {
+		if (text) {
+			this.result += this._wrap(text, "small");
+		}
 
-    return this;
-  }
+		return this;
+	}
 
-  /** Smaller with space if text is not empty */
-  public smallS(text: string) {
-    this._insertSpaceIfNotEmpty(text);
-    return this.small(text);
-  }
+	/** Smaller with space if text is not empty */
+	public smallS(text: string) {
+		this._insertSpaceIfNotEmpty(text);
+		return this.small(text);
+	}
 
-  /** <del> - Deleted text */
-  public del(text: string) {
-    if (text) {
-      this.result += this._wrap(text, "del");
-    }
+	/** <del> - Deleted text */
+	public del(text: string) {
+		if (text) {
+			this.result += this._wrap(text, "del");
+		}
 
-    return this;
-  }
+		return this;
+	}
 
-  /** Deleted with space if text is not empty */
-  public delS(text: string) {
-    this._insertSpaceIfNotEmpty(text);
-    return this.del(text);
-  }
+	/** Deleted with space if text is not empty */
+	public delS(text: string) {
+		this._insertSpaceIfNotEmpty(text);
+		return this.del(text);
+	}
 
-  /** <ins> - Inserted text */
-  public ins(text: string) {
-    if (text) {
-      this.result += this._wrap(text, "ins");
-    }
+	/** <ins> - Inserted text */
+	public ins(text: string) {
+		if (text) {
+			this.result += this._wrap(text, "ins");
+		}
 
-    return this;
-  }
+		return this;
+	}
 
-  /** Inserted with space if text is not empty */
-  public insS(text: string) {
-    this._insertSpaceIfNotEmpty(text);
-    return this.ins(text);
-  }
+	/** Inserted with space if text is not empty */
+	public insS(text: string) {
+		this._insertSpaceIfNotEmpty(text);
+		return this.ins(text);
+	}
 
-  /** <sub> - Subscript text */
-  public sub(text: string) {
-    if (text) {
-      this.result += this._wrap(text, "sub");
-    }
+	/** <sub> - Subscript text */
+	public sub(text: string) {
+		if (text) {
+			this.result += this._wrap(text, "sub");
+		}
 
-    return this;
-  }
+		return this;
+	}
 
-  /** Subscript with space if text is not empty */
-  public subS(text: string) {
-    this._insertSpaceIfNotEmpty(text);
-    return this.sub(text);
-  }
+	/** Subscript with space if text is not empty */
+	public subS(text: string) {
+		this._insertSpaceIfNotEmpty(text);
+		return this.sub(text);
+	}
 
-  /** <sup> - Superscript text */
-  public sup(text: string) {
-    if (text) {
-      this.result += this._wrap(text, "sup");
-    }
+	/** <sup> - Superscript text */
+	public sup(text: string) {
+		if (text) {
+			this.result += this._wrap(text, "sup");
+		}
 
-    return this;
-  }
+		return this;
+	}
 
-  /** Superscript with space if text is not empty */
-  public supS(text: string) {
-    this._insertSpaceIfNotEmpty(text);
-    return this.sup(text);
-  }
+	/** Superscript with space if text is not empty */
+	public supS(text: string) {
+		this._insertSpaceIfNotEmpty(text);
+		return this.sup(text);
+	}
 
-  // HTML Quotation
+	// HTML Quotation
 
-  /** The HTML <q> tag defines a short quotation.*/
-  public q(text: string) {
-    if (text) {
-      this.result += this._wrap(text, "q");
-    }
+	/** The HTML <q> tag defines a short quotation.*/
+	public q(text: string) {
+		if (text) {
+			this.result += this._wrap(text, "q");
+		}
 
-    return this;
-  }
+		return this;
+	}
 
-  /** Quotation with space if text is not empty */
-  public qS(text: string) {
-    this._insertSpaceIfNotEmpty(text);
-    return this.q(text);
-  }
+	/** Quotation with space if text is not empty */
+	public qS(text: string) {
+		this._insertSpaceIfNotEmpty(text);
+		return this.q(text);
+	}
 
-  /**
-   * The HTML <abbr> tag defines an abbreviation or an acronym
-   * Like "HTML", "CSS", "Mr.", "Dr.", "ASAP", "ATM".
-   * */
-  public abbr(text: string, title: string) {
-    if (text && title) {
-      this.result += this._wrap(text, "abbr", `title="${title}"`);
-    }
+	/**
+	 * The HTML <abbr> tag defines an abbreviation or an acronym
+	 * Like "HTML", "CSS", "Mr.", "Dr.", "ASAP", "ATM".
+	 * */
+	public abbr(text: string, title: string) {
+		if (text && title) {
+			this.result += this._wrap(text, "abbr", `title="${title}"`);
+		}
 
-    return this;
-  }
+		return this;
+	}
 
-  /** Abbreviation with space if text is not empty */
-  public abbrS(text: string, title: string) {
-    this._insertSpaceIfNotEmpty(text);
-    return this.abbr(text, title);
-  }
+	/** Abbreviation with space if text is not empty */
+	public abbrS(text: string, title: string) {
+		this._insertSpaceIfNotEmpty(text);
+		return this.abbr(text, title);
+	}
 
-  /** The HTML <bdo> tag is used to override the current text direction */
-  public bdo(text: string, dir: TDirection) {
-    if (text && dir) {
-      this.result += this._wrap(text, "abbr", `dir="${dir}"`);
-    }
+	/** The HTML <bdo> tag is used to override the current text direction */
+	public bdo(text: string, dir: TDirection) {
+		if (text && dir) {
+			this.result += this._wrap(text, "abbr", `dir="${dir}"`);
+		}
 
-    return this;
-  }
+		return this;
+	}
 
-  /** Direction override with space if text is not empty */
-  public bdoS(text: string, dir: TDirection) {
-    this._insertSpaceIfNotEmpty(text);
-    return this.bdo(text, dir);
-  }
+	/** Direction override with space if text is not empty */
+	public bdoS(text: string, dir: TDirection) {
+		this._insertSpaceIfNotEmpty(text);
+		return this.bdo(text, dir);
+	}
 
-  /** If you really would need it :) */
-  public space() {
-    this.result += " ";
+	/** If you really would need it :) */
+	public space() {
+		this.result += " ";
 
-    return this;
-  }
+		return this;
+	}
 
-  /** Add a dot :) */
-  public dot() {
-    this.result += ".";
+	/** Add a dot :) */
+	public dot() {
+		this.result += ".";
 
-    return this;
-  }
+		return this;
+	}
 
-  /** Getting result */
-  public build() {
-    return this.result;
-  }
+	/** Adds a <br /> tag */
+	public br() {
+		this.result += "<br />";
 
-  /** helper that wraps text withing tags */
-  protected _wrap(text: string, tag: string, attrs?: string): string {
-    if (attrs) {
-      return `<${tag} ${attrs}>${text}</${tag}>`;
-    }
+		return this;
+	}
 
-    return `<${tag}>${text}</${tag}>`;
-  }
+	/** Adds \n for new line */
+	public newLine() {
+		this.result += "\n";
 
-  protected _insertSpaceIfNotEmpty(text: string) {
-    if (text.trim()) {
-      this.space();
-    }
-  }
+		return this;
+	}
+
+	/** Getting result */
+	public build() {
+		return this.result;
+	}
+
+	/** helper that wraps text withing tags */
+	protected _wrap(text: string, tag: string, attrs?: string): string {
+		if (attrs) {
+			return `<${tag} ${attrs}>${text}</${tag}>`;
+		}
+
+		return `<${tag}>${text}</${tag}>`;
+	}
+
+	protected _insertSpaceIfNotEmpty(text: string) {
+		if (text.trim()) {
+			this.space();
+		}
+	}
 }
