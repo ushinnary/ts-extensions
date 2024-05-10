@@ -25,7 +25,10 @@ describe("String", () => {
 
 	describe("#split_whitespace()", () => {
 		it("should return the string as an array of characters", () => {
-			expect("hello world".split_whitespace()).toEqual(["hello", "world"]);
+			expect("hello world".split_whitespace()).toEqual([
+				"hello",
+				"world",
+			]);
 		});
 	});
 
@@ -40,7 +43,12 @@ describe("String", () => {
 	describe("#lines()", () => {
 		it("should return the string as an array of characters", () => {
 			expect("hello\nworld".lines()).toEqual(["hello", "world"]);
-			expect("foo\r\nbar\n\nbaz\n".lines()).toEqual(["foo", "bar", "", "baz"]);
+			expect("foo\r\nbar\n\nbaz\n".lines()).toEqual([
+				"foo",
+				"bar",
+				"",
+				"baz",
+			]);
 		});
 	});
 
@@ -53,11 +61,15 @@ describe("String", () => {
 
 	describe("#eq_ignore_ascii_case()", () => {
 		it("should return true if the string is ascii", () => {
-			expect("hello!\n".eq_ignore_ascii_case("HELLO!\n")).toBeTruthy();
+			expect(
+				"hello!\n".eq_ignore_ascii_case("HELLO!\n"),
+			).toBeTruthy();
 			expect(
 				"Grüße, Jürgen ❤".eq_ignore_ascii_case("grüße, jürgen ❤"),
 			).toBeTruthy();
-			expect("Grüße, Jürgen ❤".eq_ignore_ascii_case("FERRÖS")).toBeFalsy();
+			expect(
+				"Grüße, Jürgen ❤".eq_ignore_ascii_case("FERRÖS"),
+			).toBeFalsy();
 		});
 	});
 

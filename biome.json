@@ -5,10 +5,11 @@
 		"enabled": true
 	},
 	"formatter": {
-		"lineWidth": 80,
+		"lineWidth": 70,
 		"indentStyle": "tab",
 		"indentWidth": 2,
-		"formatWithErrors": false
+		"formatWithErrors": false,
+		"attributePosition": "multiline"
 	},
 	"linter": {
 		"rules": {

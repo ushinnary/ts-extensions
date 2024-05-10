@@ -39,15 +39,21 @@ describe("Array linq", () => {
 
 	describe("#aggregate()", () => {
 		it("should return the aggregated value with initial value", () => {
-			expect([1, 2, 3].Aggregate(1, (acc, item) => acc + item)).toEqual(7);
+			expect(
+				[1, 2, 3].Aggregate(1, (acc, item) => acc + item),
+			).toEqual(7);
 		});
 
 		it("should return the aggregated value", () => {
-			expect([1, 2, 3].Aggregate((acc, item) => acc + item)).toEqual(6);
+			expect([1, 2, 3].Aggregate((acc, item) => acc + item)).toEqual(
+				6,
+			);
 		});
 
 		it("should return the aggregated value with seed", () => {
-			expect([1, 2, 3].Aggregate(0, (acc, item) => acc + item)).toEqual(6);
+			expect(
+				[1, 2, 3].Aggregate(0, (acc, item) => acc + item),
+			).toEqual(6);
 		});
 
 		it("should return the aggregated value with seed and mapper", () => {
@@ -88,7 +94,9 @@ describe("Array linq", () => {
 	describe("#distinct()", () => {
 		it("should return the distinct array", () => {
 			expect([1, 2, 3, 4].Distinct()).toEqual([1, 2, 3, 4]);
-			expect([1, 2, 2, 3, 3, 3, 4, 4, 4, 4].Distinct()).toEqual([1, 2, 3, 4]);
+			expect([1, 2, 2, 3, 3, 3, 4, 4, 4, 4].Distinct()).toEqual([
+				1, 2, 3, 4,
+			]);
 			expect(
 				["a", "b", "b", "c", "c", "c", "d", "d", "d", "d"].Distinct(),
 			).toEqual(["a", "b", "c", "d"]);
@@ -123,7 +131,10 @@ describe("Array linq", () => {
 		it("should return the excepted array", () => {
 			expect([1, 2, 3, 4].Except([1, 2])).toEqual([3, 4]);
 			expect([1, 2, 3, 4].Except([1, 2, 3, 4])).toEqual([]);
-			expect(["a", "b", "c", "d"].Except(["a", "b"])).toEqual(["c", "d"]);
+			expect(["a", "b", "c", "d"].Except(["a", "b"])).toEqual([
+				"c",
+				"d",
+			]);
 			// Should display error in IDE
 			// [{}].except([])
 		});
@@ -144,7 +155,10 @@ describe("Array linq", () => {
 					{ id: 4, name: "i" },
 					{ id: 4, name: "j" },
 					{ id: 5, name: "o" },
-				].ExceptBy([{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }], "id"),
+				].ExceptBy(
+					[{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }],
+					"id",
+				),
 			).toEqual([{ id: 5, name: "o" }]);
 		});
 	});
@@ -166,7 +180,10 @@ describe("Array linq", () => {
 			const groupedItems = items.GroupBy(
 				(item) => item.id,
 				(item) => item.name,
-				(groupKey, groupValues) => ({ id: groupKey, names: groupValues }),
+				(groupKey, groupValues) => ({
+					id: groupKey,
+					names: groupValues,
+				}),
 			);
 			expect(groupedItems).toMatchObject([
 				{ id: 1, names: ["a"] },
@@ -226,8 +243,13 @@ describe("Array linq", () => {
 	describe("#intersect()", () => {
 		it("should return the intersected array", () => {
 			expect([1, 2, 3, 4].Intersect([1, 2])).toEqual([1, 2]);
-			expect([1, 2, 3, 4].Intersect([1, 2, 3, 4])).toEqual([1, 2, 3, 4]);
-			expect(["a", "b", "c", "d"].Intersect(["a", "b"])).toEqual(["a", "b"]);
+			expect([1, 2, 3, 4].Intersect([1, 2, 3, 4])).toEqual([
+				1, 2, 3, 4,
+			]);
+			expect(["a", "b", "c", "d"].Intersect(["a", "b"])).toEqual([
+				"a",
+				"b",
+			]);
 			// Should display error in IDE
 			// [{}].intersect([])
 		});
@@ -310,7 +332,9 @@ describe("Array linq", () => {
 
 	describe("#SkipWhile()", () => {
 		it("should return the skipped array", () => {
-			expect([1, 2, 3, 4, 5].SkipWhile((n) => n < 3)).toEqual([3, 4, 5]);
+			expect([1, 2, 3, 4, 5].SkipWhile((n) => n < 3)).toEqual([
+				3, 4, 5,
+			]);
 		});
 	});
 

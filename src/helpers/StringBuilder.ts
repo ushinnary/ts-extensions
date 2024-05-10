@@ -241,9 +241,13 @@ export class StringBuilder {
 		return this;
 	}
 
-	/** Adds a <br /> tag */
-	public br() {
-		this.result += "<br />";
+	/** Adds a <br /> tag
+	 * @param [times=1] Indicate number of <br /> tag repeats
+	 */
+	public br(times = 1) {
+		for (let i = 0; i < times; i++) {
+			this.result += "<br />";
+		}
 
 		return this;
 	}

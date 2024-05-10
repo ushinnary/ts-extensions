@@ -62,7 +62,9 @@ describe("Number", () => {
 		it("should return an array of numbers from the number to the given number", () => {
 			expect((5).range_up_to(3)).toEqual([]);
 			expect((5).range_up_to(5)).toEqual([5]);
-			expect((5).range_up_to(13)).toEqual([5, 6, 7, 8, 9, 10, 11, 12, 13]);
+			expect((5).range_up_to(13)).toEqual([
+				5, 6, 7, 8, 9, 10, 11, 12, 13,
+			]);
 		});
 	});
 

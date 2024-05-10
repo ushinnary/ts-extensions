@@ -31,14 +31,32 @@ describe("StringBuilder", () => {
 	describe("Adding new lines", () => {
 		it("Should add new line with \n and build", () => {
 			expect(
-				new StringBuilder().regular("Hello").newLine().regular("there").build(),
+				new StringBuilder()
+					.regular("Hello")
+					.newLine()
+					.regular("there")
+					.build(),
 			).toEqual("Hello\nthere");
 		});
 
 		it("Should add new line with <br> and build", () => {
 			expect(
-				new StringBuilder().regular("Hello").br().regular("there").build(),
+				new StringBuilder()
+					.regular("Hello")
+					.br()
+					.regular("there")
+					.build(),
 			).toEqual("Hello<br />there");
+		});
+
+		it("Should add new line with <br> tag multiple times and build", () => {
+			expect(
+				new StringBuilder()
+					.regular("Hello")
+					.br(3)
+					.regular("there")
+					.build(),
+			).toEqual("Hello<br /><br /><br />there");
 		});
 	});
 });
