@@ -264,13 +264,22 @@ export class StringBuilder {
 		return this.result;
 	}
 
+	/** Helper that wraps text inside custom text. Usefull for formatting like in external libraries. */
+	protected _customWrapWithoutArrows(
+		content: string,
+		start: string,
+		end: string,
+	): string {
+		return `${start}${content}${end}`;
+	}
+
 	/** helper that wraps text withing tags */
 	protected _wrap(text: string, tag: string, attrs?: string): string {
-		if (attrs) {
-			return `<${tag} ${attrs}>${text}</${tag}>`;
-		}
-
-		return `<${tag}>${text}</${tag}>`;
+		return this._customWrapWithoutArrows(
+			text,
+			attrs ? `<${tag} ${attrs}>` : `<${tag}>`,
+			`</${tag}>`,
+		);
 	}
 
 	protected _insertSpaceIfNotEmpty(text: string) {

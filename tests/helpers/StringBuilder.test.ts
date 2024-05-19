@@ -3,6 +3,7 @@ import { StringBuilder } from "../../dist/helpers/StringBuilder";
 describe("StringBuilder", () => {
 	describe("Regular with some Bolds", () => {
 		const expected = "Hello <b>there</b> my friend.";
+
 		it("Should generate a correct string at the end", () => {
 			expect(
 				new StringBuilder()
