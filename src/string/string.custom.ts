@@ -75,8 +75,8 @@ if (!String.prototype.replaceBetween) {
 
 if (!String.prototype.replaceAllCombined) {
 	String.prototype.replaceAllCombined = function (
-		words,
-		replacer,
+		words: string[],
+		replacer: (str: string) => string,
 		isCaseInsensetive = true,
 	) {
 		if (!words.length) {
@@ -90,49 +90,17 @@ if (!String.prototype.replaceAllCombined) {
 		const formatedSelf = isCaseInsensetive
 			? this.toLowerCase()
 			: this;
-		const hash: Record<string, number[]> = formatedSelf
-			.split("")
-			.filter(Boolean)
-			.reduce(
-				(dict, letter, index) => {
-					if (!(letter in dict)) {
-						dict[letter] = [];
-					}
 
-					dict[letter].push(index);
-
-					return dict;
-				},
-				{} as Record<string, number[]>,
-			);
-
-		const allOccurences = [];
+		const allOccurences: [number, number][] = [];
 
 		for (const word of formatedWords) {
-			const [firstLetter, ...letters] = word.split("");
+			let lastIdx = formatedSelf.indexOf(word);
 
-			if (!(firstLetter in hash)) {
-				break;
-			}
+			while (lastIdx !== -1) {
+				const occurenceEndIdx = lastIdx + word.length - 1;
+				allOccurences.push([lastIdx, occurenceEndIdx]);
 
-			const allIndexes: number[] = hash[firstLetter];
-
-			idxLoop: for (const id of allIndexes) {
-				let lastId: number = id;
-
-				for (const letter of letters) {
-					const nextId = (hash[letter] || []).find(
-						(currId) => currId === lastId + 1 && currId !== lastId,
-					);
-
-					if (!nextId || lastId === nextId) {
-						continue idxLoop;
-					}
-
-					lastId = nextId;
-				}
-
-				allOccurences.unshift([id, lastId]);
+				lastIdx = formatedSelf.indexOf(word, occurenceEndIdx);
 			}
 		}
 
@@ -163,6 +131,8 @@ if (!String.prototype.replaceAllCombined) {
 		}
 
 		let result = this;
+
+		allOccurences.sort((a, b) => b[0] - a[0]);
 
 		for (const [startId, endId] of allOccurences) {
 			result = result.replaceBetween(
