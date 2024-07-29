@@ -11,6 +11,21 @@ declare global {
 		/**  Shows phone number in a readable way */
 		/**  0707070707 => 07 07 07 07 07 */
 		phoneNumberSplit(): string;
+		/** Replaces text from index to index */
+		replaceBetween(start: number, end: number, word: string): string;
+		/** Replaces all occurences
+		 * If inclusive param specified, so it will combine all overlapping matchs for one occurence
+		 * Example: In the text "Texte" we want to wrap words "text" and "exte", so we will return combination of both, meaning the whole word "Texte"
+		 * */
+		replaceAllCombined(
+			words: string[],
+			replacer: (matchedWord: string) => string,
+		): string;
+		replaceAllCombined(
+			words: string[],
+			replacer: (matchedWord: string) => string,
+			isCaseInsensetive: boolean,
+		): string;
 	}
 }
 
@@ -49,5 +64,114 @@ if (!String.prototype.phoneNumberSplit) {
 			/(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/g,
 			"$1 $2 $3 $4 $5",
 		);
+	};
+}
+
+if (!String.prototype.replaceBetween) {
+	String.prototype.replaceBetween = function (start, end, text) {
+		return this.substring(0, start) + text + this.substring(end);
+	};
+}
+
+if (!String.prototype.replaceAllCombined) {
+	String.prototype.replaceAllCombined = function (
+		words,
+		replacer,
+		isCaseInsensetive = true,
+	) {
+		if (!words.length) {
+			return this;
+		}
+
+		const formatedWords = isCaseInsensetive
+			? words.map((w) => w.toLowerCase())
+			: words;
+
+		const formatedSelf = isCaseInsensetive
+			? this.toLowerCase()
+			: this;
+		const hash: Record<string, number[]> = formatedSelf
+			.split("")
+			.filter(Boolean)
+			.reduce(
+				(dict, letter, index) => {
+					if (!(letter in dict)) {
+						dict[letter] = [];
+					}
+
+					dict[letter].push(index);
+
+					return dict;
+				},
+				{} as Record<string, number[]>,
+			);
+
+		const allOccurences = [];
+
+		for (const word of formatedWords) {
+			const [firstLetter, ...letters] = word.split("");
+
+			if (!(firstLetter in hash)) {
+				break;
+			}
+
+			const allIndexes: number[] = hash[firstLetter];
+
+			idxLoop: for (const id of allIndexes) {
+				let lastId: number = id;
+
+				for (const letter of letters) {
+					const nextId = (hash[letter] || []).find(
+						(currId) => currId === lastId + 1 && currId !== lastId,
+					);
+
+					if (!nextId || lastId === nextId) {
+						continue idxLoop;
+					}
+
+					lastId = nextId;
+				}
+
+				allOccurences.unshift([id, lastId]);
+			}
+		}
+
+		let index = -1;
+
+		for (const current of allOccurences) {
+			++index;
+
+			let existingOccurence = allOccurences.find(
+				([start, end], idx) =>
+					end >= current[0] && start <= current[1] && idx !== index,
+			);
+
+			while (existingOccurence) {
+				current[0] = Math.min(current[0], existingOccurence[0]);
+				current[1] = Math.max(current[1], existingOccurence[1]);
+
+				allOccurences.splice(
+					allOccurences.indexOf(existingOccurence),
+					1,
+				);
+
+				existingOccurence = allOccurences.find(
+					([start, end], idx) =>
+						end >= current[0] && start <= current[1] && idx !== index,
+				);
+			}
+		}
+
+		let result = this;
+
+		for (const [startId, endId] of allOccurences) {
+			result = result.replaceBetween(
+				startId,
+				endId + 1,
+				replacer(this.substring(startId, endId + 1)),
+			);
+		}
+
+		return result;
 	};
 }

@@ -33,4 +33,23 @@ describe("String Custom", () => {
 		expect("0707070707".phoneNumberSplit()).toBe("07 07 07 07 07");
 		expect("".phoneNumberSplit()).toBe("");
 	});
+
+	it("Replace all occurencies with overlap case-insensetive", () => {
+		expect(
+			"Simple texte about something".replaceAllCombined(
+				["mp", "simp", "imple", "mp", "te", "text", "exte"],
+				(word) => `<mark>${word}</mark>`,
+			),
+		).toBe("<mark>Simple</mark> <mark>texte</mark> about something");
+	});
+
+	it("Replace all occurencies with overlap case-sensetive", () => {
+		expect(
+			"Simple texte about something".replaceAllCombined(
+				["mp", "simp", "imple", "mp", "te", "text", "exte"],
+				(word) => `<mark>${word}</mark>`,
+				false,
+			),
+		).toBe("S<mark>imple</mark> <mark>texte</mark> about something");
+	});
 });
