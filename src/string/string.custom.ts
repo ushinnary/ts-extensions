@@ -1,4 +1,5 @@
-export type {};
+import { mergeRanges } from "../shared/array";
+
 declare global {
 	interface String {
 		/**Imaging having html stuff in our string
@@ -91,7 +92,7 @@ if (!String.prototype.replaceAllCombined) {
 			? this.toLowerCase()
 			: this;
 
-		const allOccurences: [number, number][] = [];
+		let allOccurences: [number, number][] = [];
 
 		for (const word of formatedWords) {
 			let lastIdx = formatedSelf.indexOf(word);
@@ -104,35 +105,9 @@ if (!String.prototype.replaceAllCombined) {
 			}
 		}
 
-		let index = -1;
-
-		for (const current of allOccurences) {
-			++index;
-
-			let existingOccurence = allOccurences.find(
-				([start, end], idx) =>
-					end >= current[0] && start <= current[1] && idx !== index,
-			);
-
-			while (existingOccurence) {
-				current[0] = Math.min(current[0], existingOccurence[0]);
-				current[1] = Math.max(current[1], existingOccurence[1]);
-
-				allOccurences.splice(
-					allOccurences.indexOf(existingOccurence),
-					1,
-				);
-
-				existingOccurence = allOccurences.find(
-					([start, end], idx) =>
-						end >= current[0] && start <= current[1] && idx !== index,
-				);
-			}
-		}
+		allOccurences = mergeRanges(allOccurences);
 
 		let result = this;
-
-		allOccurences.sort((a, b) => b[0] - a[0]);
 
 		for (const [startId, endId] of allOccurences) {
 			result = result.replaceBetween(

@@ -1,4 +1,4 @@
-import "../../src/string/string.custom";
+import "../../../dist/string/string.custom";
 
 describe("String Custom", () => {
 	it("should wrapBetween", () => {
