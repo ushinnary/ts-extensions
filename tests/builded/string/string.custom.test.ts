@@ -13,9 +13,7 @@ describe("String Custom", () => {
 				["<div class='wrapper'>", "<div class='wrapper2'>"],
 				["</div>"],
 			),
-		).toBe(
-			"<div class='wrapper'><div class='wrapper2'><b>hello</b></div>",
-		);
+		).toBe("<div class='wrapper'><div class='wrapper2'><b>hello</b></div>");
 		expect(
 			"<b>hello</b>".wrapBetweenHtmlTags([
 				"<div class='wrapper'>",

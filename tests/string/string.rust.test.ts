@@ -61,9 +61,7 @@ describe("String", () => {
 
 	describe("#eq_ignore_ascii_case()", () => {
 		it("should return true if the string is ascii", () => {
-			expect(
-				"hello!\n".eq_ignore_ascii_case("HELLO!\n"),
-			).toBeTruthy();
+			expect("hello!\n".eq_ignore_ascii_case("HELLO!\n")).toBeTruthy();
 			expect(
 				"Grüße, Jürgen ❤".eq_ignore_ascii_case("grüße, jürgen ❤"),
 			).toBeTruthy();
