@@ -1,12 +1,10 @@
-import { Pair } from "../shared/types";
+import type { Pair } from "../shared/types";
 import { mergeRanges } from "../shared/array";
 
 declare global {
 	interface Array<T> {
 		/** Only non overlapping ranges will left */
-		mergeRanges<R = string | number | Date>(
-			this: Pair<R>[],
-		): Pair<R>[];
+		mergeRanges<R = string | number | Date>(this: Pair<R>[]): Pair<R>[];
 
 		/** A better way to do .filter(true) & .filter(false) for two variables */
 		splitFilter(condition: (_el: T) => boolean): [T[], T[]];

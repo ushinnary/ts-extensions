@@ -51,9 +51,7 @@ if (!String.prototype.wrapBetweenHtmlTags) {
 		}
 		if (!textToAppend) {
 			const ending = textToPrepend.replace("<", "</");
-			return (
-				textToPrepend + this + ending.replace(/(<\/\w+).*$/g, "$1>")
-			);
+			return textToPrepend + this + ending.replace(/(<\/\w+).*$/g, "$1>");
 		}
 		return textToPrepend + this + textToAppend;
 	};
@@ -88,9 +86,7 @@ if (!String.prototype.replaceAllCombined) {
 			? words.map((w) => w.toLowerCase())
 			: words;
 
-		const formatedSelf = isCaseInsensetive
-			? this.toLowerCase()
-			: this;
+		const formatedSelf = isCaseInsensetive ? this.toLowerCase() : this;
 
 		let allOccurences: [number, number][] = [];
 

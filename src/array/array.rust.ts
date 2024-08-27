@@ -28,8 +28,10 @@ declare global {
 	}
 }
 
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 function defineProp<K extends keyof any[]>(
 	key: K,
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	value: (...args: Parameters<any[][K]>) => ReturnType<any[][K]>,
 ): void {
 	if (!Array.prototype[key]) {

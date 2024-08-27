@@ -71,9 +71,7 @@ if (!Number.prototype.clamp) {
 }
 if (!Number.prototype.range_up_to) {
 	Number.prototype.range_up_to = function (num) {
-		const nbOfElementsToGenerate = num.saturating_sub(
-			this.valueOf() - 1,
-		);
+		const nbOfElementsToGenerate = num.saturating_sub(this.valueOf() - 1);
 		return [...Array(nbOfElementsToGenerate).keys()].map(
 			(i) => i + this.valueOf(),
 		);
@@ -81,9 +79,7 @@ if (!Number.prototype.range_up_to) {
 }
 if (!Number.prototype.range_down_to) {
 	Number.prototype.range_down_to = function (num) {
-		const nbOfElementsToGenerate = this.valueOf().saturating_sub(
-			num - 1,
-		);
+		const nbOfElementsToGenerate = this.valueOf().saturating_sub(num - 1);
 		return [...Array(nbOfElementsToGenerate).keys()].map(
 			(i) => this.valueOf() - i,
 		);

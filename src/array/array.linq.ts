@@ -65,8 +65,10 @@ declare global {
 	}
 }
 
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 function defineProp<K extends keyof any[]>(
 	key: K,
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	value: (...args: Parameters<any[][K]>) => ReturnType<any[][K]>,
 ): void {
 	if (!Array.prototype[key]) {
@@ -124,9 +126,8 @@ defineProp("Average", function () {
 });
 
 defineProp("Chunk", function (size) {
-	return Array.from(
-		{ length: Math.ceil(this.length / size) },
-		(_, i) => this.slice(i * size, i * size + size),
+	return Array.from({ length: Math.ceil(this.length / size) }, (_, i) =>
+		this.slice(i * size, i * size + size),
 	);
 });
 
@@ -194,12 +195,7 @@ defineProp("Max", function () {
 
 defineProp(
 	"GroupJoin",
-	function (
-		inner,
-		outerKeySelector,
-		innerKeySelector,
-		resultSelector,
-	) {
+	function (inner, outerKeySelector, innerKeySelector, resultSelector) {
 		const result = [];
 
 		for (const outer of this ?? []) {
@@ -224,12 +220,7 @@ defineProp("Intersect", function (itemsToIntersect) {
 
 defineProp(
 	"Join",
-	function (
-		innerArray,
-		outerKeySelector,
-		innerKeySelector,
-		resultSelector,
-	) {
+	function (innerArray, outerKeySelector, innerKeySelector, resultSelector) {
 		const result = [];
 
 		for (const outer of this) {
