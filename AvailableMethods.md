@@ -67,6 +67,8 @@
 - [x] `moreThan(num: number): boolean;`
 - [x] `notZeroAndLessThan(num: number): boolean;`
 - [x] `notZeroAndMoreThan(num: number): boolean;`
+- [x] `toOffsetRange(from: number, to: number): [number, number];`
+- [x] `toOffsetRangeInclusive(from: number, to: number): number[];`
 
 ## String
 

@@ -108,4 +108,30 @@ describe("Number", () => {
 			expect(zero.notZeroAndMoreThan(-1)).toBe(false);
 		});
 	});
+
+	describe("toOffsetRange", () => {
+		const year = 2024;
+
+		it("should create a range like 2014-2034", () => {
+			expect(year.toOffsetRange(-10, 10)).toMatchObject([2014, 2034]);
+		});
+
+		it("should create a range of self two times if left value is greater than right", () => {
+			expect(year.toOffsetRange(10, 0)).toMatchObject([year, year]);
+		});
+	});
+
+	describe("toOffsetRangeInclusive", () => {
+		const year = 2024;
+
+		it("should create a range like 2014-2034", () => {
+			expect(year.toOffsetRangeInclusive(-1, 1)).toMatchObject([
+				2023, 2024, 2025,
+			]);
+		});
+
+		it("should create an empty array if the left value is greater than right one", () => {
+			expect(year.toOffsetRangeInclusive(10, 0)).toMatchObject([]);
+		});
+	});
 });

@@ -24,6 +24,13 @@ declare global {
 		notZeroAndLessThan(num: number): boolean;
 		/** Check if number is different from zero and more than another number */
 		notZeroAndMoreThan(num: number): boolean;
+		/**
+		 * Creates a new range from the number
+		 * Ex: 2048.toOffsetRange(-10, 10) // [2038, 2058];
+		 * */
+		toOffsetRange(from: number, to: number): [number, number];
+		/** Includes all entries from the range */
+		toOffsetRangeInclusive(from: number, to: number): number[];
 	}
 }
 
@@ -72,5 +79,25 @@ if (!Number.prototype.notZeroAndLessThan) {
 if (!Number.prototype.notZeroAndMoreThan) {
 	Number.prototype.notZeroAndMoreThan = function (num) {
 		return this !== 0 && this > num;
+	};
+}
+
+if (!Number.prototype.toOffsetRange) {
+	Number.prototype.toOffsetRange = function (from, to) {
+		if (from > to) return [this, this];
+
+		return [this + from, this + to];
+	};
+}
+
+if (!Number.prototype.toOffsetRangeInclusive) {
+	Number.prototype.toOffsetRangeInclusive = function (from, to) {
+		const arr = [];
+
+		for (let i = this + from; i <= this + to; i++) {
+			arr.push(i);
+		}
+
+		return arr;
 	};
 }
