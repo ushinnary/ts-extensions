@@ -1,4 +1,4 @@
-import type { Pair } from "./types";
+import type { Pair } from "./types.js";
 
 export function mergeRanges<T = string | number | Date>(
 	items: Pair<T>[],

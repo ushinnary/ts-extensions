@@ -1,4 +1,4 @@
-import { mergeRanges } from "../shared/array";
+import { mergeRanges } from "../shared/array.js";
 
 declare global {
 	interface String {

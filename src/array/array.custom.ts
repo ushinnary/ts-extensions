@@ -1,5 +1,5 @@
-import type { Pair } from "../shared/types";
-import { mergeRanges } from "../shared/array";
+import type { Pair } from "../shared/types.js";
+import { mergeRanges } from "../shared/array.js";
 
 declare global {
 	interface Array<T> {

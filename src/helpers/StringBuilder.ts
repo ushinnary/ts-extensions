@@ -287,4 +287,8 @@ export class StringBuilder {
 			this.space();
 		}
 	}
+
+	public toString(): string {
+		return this.result;
+	}
 }

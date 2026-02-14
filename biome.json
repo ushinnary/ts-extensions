@@ -1,7 +1,12 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
-  "organizeImports": {
-    "enabled": true
+  "$schema": "https://biomejs.dev/schemas/2.3.15/schema.json",
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
   },
   "formatter": {
     "lineWidth": 80,
@@ -11,16 +16,14 @@
     "attributePosition": "multiline"
   },
   "linter": {
+    "enabled": true,
     "rules": {
-      "all": true,
+      "recommended": true,
       "nursery": {},
       "style": {
         "useNamingConvention": "off"
       }
-    },
-    "ignore": [
-      "./tests/**"
-    ]
+    }
   },
   "javascript": {
     "formatter": {
