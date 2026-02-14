@@ -85,22 +85,21 @@ describe("Dictionary", () => {
 		expect(filtered.get("one")).toBeUndefined();
 	});
 
-    it("should allow includes check", () => {
-         const dict = new Dictionary<string, number>({
-            one: 1,
-            two: 2,
-        });
-        expect(dict.includes(1)).toBe(true);
-        expect(dict.includes(3)).toBe(false);
-    });
+	it("should allow includes check", () => {
+		const dict = new Dictionary<string, number>({
+			one: 1,
+			two: 2,
+		});
+		expect(dict.includes(1)).toBe(true);
+		expect(dict.includes(3)).toBe(false);
+	});
 
-    it("should allow clear", () => {
-        const dict = new Dictionary<string, number>({
-           one: 1,
-       });
-       dict.clear();
-       expect(dict.length).toBe(0);
-       expect(dict.get("one")).toBeUndefined();
-   });
+	it("should allow clear", () => {
+		const dict = new Dictionary<string, number>({
+			one: 1,
+		});
+		dict.clear();
+		expect(dict.length).toBe(0);
+		expect(dict.get("one")).toBeUndefined();
+	});
 });
-
