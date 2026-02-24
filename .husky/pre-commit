@@ -1,6 +1,6 @@
-npm run format
-npm run format:tests
-npm run build
-npm run test
-npm run generate:doc
+nix-shell shell.nix --run "npm run format"
+nix-shell shell.nix --run "npm run format:tests"
+nix-shell shell.nix --run "npm run build"
+nix-shell shell.nix --run "npm run test"
+nix-shell shell.nix --run "npm run generate:doc"
 git add AvailableMethods.md

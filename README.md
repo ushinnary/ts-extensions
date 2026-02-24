@@ -10,7 +10,7 @@
 
 ## Installation
 
-To install this project, run `npm install ts-extensials --save-dev`
+To install this project, run `nix-shell shell.nix --run "npm install ts-extensials --save-dev"`
 
 ## Usage
 
