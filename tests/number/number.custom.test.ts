@@ -57,6 +57,19 @@ describe("Number", () => {
 		});
 	});
 
+	describe("lt", () => {
+		it("should return true if number is less than another number", () => {
+			const num = 5;
+			expect(num.lt(10)).toBe(true);
+		});
+
+		it("should return false if number is equal or greater than another number", () => {
+			const num = 5;
+			expect(num.lt(5)).toBe(false);
+			expect(num.lt(4)).toBe(false);
+		});
+	});
+
 	describe("moreThan", () => {
 		it("should return true if number is greater than another number", () => {
 			const num = 5;
@@ -66,6 +79,45 @@ describe("Number", () => {
 		it("should return false if number is not greater than another number", () => {
 			const num = 5;
 			expect(num.moreThan(10)).toBe(false);
+		});
+	});
+
+	describe("gt", () => {
+		it("should return true if number is greater than another number", () => {
+			const num = 5;
+			expect(num.gt(4)).toBe(true);
+		});
+
+		it("should return false if number is equal or less than another number", () => {
+			const num = 5;
+			expect(num.gt(5)).toBe(false);
+			expect(num.gt(10)).toBe(false);
+		});
+	});
+
+	describe("gte", () => {
+		it("should return true if number is greater than or equal to another number", () => {
+			const num = 5;
+			expect(num.gte(5)).toBe(true);
+			expect(num.gte(4)).toBe(true);
+		});
+
+		it("should return false if number is less than another number", () => {
+			const num = 5;
+			expect(num.gte(10)).toBe(false);
+		});
+	});
+
+	describe("lte", () => {
+		it("should return true if number is less than or equal to another number", () => {
+			const num = 5;
+			expect(num.lte(5)).toBe(true);
+			expect(num.lte(10)).toBe(true);
+		});
+
+		it("should return false if number is greater than another number", () => {
+			const num = 5;
+			expect(num.lte(4)).toBe(false);
 		});
 	});
 

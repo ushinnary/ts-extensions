@@ -64,7 +64,11 @@
 - [x] `inBetween(min: number, max: number): boolean;`
 - [x] `calculatePriceForTaxes(percent: number): number;`
 - [x] `lessThan(num: number): boolean;`
+- [x] `lt(num: number): boolean;`
 - [x] `moreThan(num: number): boolean;`
+- [x] `gt(num: number): boolean;`
+- [x] `gte(num: number): boolean;`
+- [x] `lte(num: number): boolean;`
 - [x] `notZeroAndLessThan(num: number): boolean;`
 - [x] `notZeroAndMoreThan(num: number): boolean;`
 - [x] `toOffsetRange(from: number, to: number): [number, number];`

@@ -18,8 +18,16 @@ declare global {
 		 * @param num Number to compare with
 		 */
 		lessThan(num: number): boolean;
+		/** Alias for lessThan */
+		lt(num: number): boolean;
 		/** Check if number is greater than another number */
 		moreThan(num: number): boolean;
+		/** Alias for moreThan */
+		gt(num: number): boolean;
+		/** Check if number is greater than or equal to another number */
+		gte(num: number): boolean;
+		/** Check if number is less than or equal to another number */
+		lte(num: number): boolean;
 		/** Check if number is different from zero and less than another number */
 		notZeroAndLessThan(num: number): boolean;
 		/** Check if number is different from zero and more than another number */
@@ -64,9 +72,33 @@ if (!Number.prototype.lessThan) {
 	};
 }
 
+if (!Number.prototype.lt) {
+	Number.prototype.lt = function (num) {
+		return this < num;
+	};
+}
+
 if (!Number.prototype.moreThan) {
 	Number.prototype.moreThan = function (num) {
 		return this > num;
+	};
+}
+
+if (!Number.prototype.gt) {
+	Number.prototype.gt = function (num) {
+		return this > num;
+	};
+}
+
+if (!Number.prototype.gte) {
+	Number.prototype.gte = function (num) {
+		return this >= num;
+	};
+}
+
+if (!Number.prototype.lte) {
+	Number.prototype.lte = function (num) {
+		return this <= num;
 	};
 }
 
