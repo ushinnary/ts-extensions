@@ -178,8 +178,8 @@ if (!Array.prototype.GroupBy) {
 				acc[key].values.push(value);
 				return acc;
 			}, initialReduceValue);
-			return Object.values(obj).map(({ key, values }: RecordValue) =>
-				finalMap(key, values),
+			return (Object.values(obj) as RecordValue[]).map(
+				({ key, values }: RecordValue) => finalMap(key, values),
 			);
 		},
 	});
@@ -195,12 +195,18 @@ defineProp("Max", function () {
 
 defineProp(
 	"GroupJoin",
-	function (inner, outerKeySelector, innerKeySelector, resultSelector) {
-		const result = [];
+	function (
+		this: any,
+		inner: any,
+		outerKeySelector: any,
+		innerKeySelector: any,
+		resultSelector: any,
+	) {
+		const result: any[] = [];
 
 		for (const outer of this ?? []) {
 			result.push(
-				resultSelector(
+				(resultSelector as any)(
 					outer,
 					inner.filter(
 						(inner) =>
@@ -220,8 +226,14 @@ defineProp("Intersect", function (itemsToIntersect) {
 
 defineProp(
 	"Join",
-	function (innerArray, outerKeySelector, innerKeySelector, resultSelector) {
-		const result = [];
+	function (
+		this: any,
+		innerArray: any,
+		outerKeySelector: any,
+		innerKeySelector: any,
+		resultSelector: any,
+	) {
+		const result: any[] = [];
 
 		for (const outer of this) {
 			for (const inner of innerArray) {
@@ -229,7 +241,7 @@ defineProp(
 				const innerKey = innerKeySelector(inner);
 
 				if (outerKey === innerKey) {
-					result.push(resultSelector(outer, inner));
+					result.push((resultSelector as any)(outer, inner));
 				}
 			}
 		}

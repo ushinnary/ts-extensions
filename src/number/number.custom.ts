@@ -124,7 +124,7 @@ if (!Number.prototype.toOffsetRange) {
 
 if (!Number.prototype.toOffsetRangeInclusive) {
 	Number.prototype.toOffsetRangeInclusive = function (from, to) {
-		const arr = [];
+		const arr: number[] = [];
 
 		for (let i = this + from; i <= this + to; i++) {
 			arr.push(i);

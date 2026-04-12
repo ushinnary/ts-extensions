@@ -8,9 +8,15 @@
     "declaration": true,
     "declarationMap": true,
     "outDir": "./dist",
+    "rootDir": "./src",
+    "ignoreDeprecations": "6.0",
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "isolatedModules": true,
     "lib": [
       "ES2022"
     ],
+    "types": ["node", "jest"],
     "baseUrl": ".",
     "rootDirs": [
       "src",

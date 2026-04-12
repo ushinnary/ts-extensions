@@ -1,9 +1,11 @@
+declare function structuredClone<T>(value: T): T;
+
 import type { Pair } from "./types.js";
 
 export function mergeRanges<T = string | number | Date>(
 	items: Pair<T>[],
 ): Pair<T>[] {
-	const copy = structuredClone(items);
+	const copy = structuredClone(items) as Pair<T>[];
 	let index = -1;
 
 	for (const current of copy) {
@@ -33,7 +35,7 @@ export function mergeRanges<T = string | number | Date>(
 		}
 	}
 
-	copy.sort((a, b) => (b as unknown)[0] - (a as unknown)[0]);
+	copy.sort((a, b) => ((b as any)[0] as number) - ((a as any)[0] as number));
 
 	return copy;
 }
